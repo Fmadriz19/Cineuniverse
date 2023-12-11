@@ -1,0 +1,62 @@
+<div class="m4">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <button class="btn btn-primary" (click)="crear()" >Agregar nueva Sala</button>
+                <hr />
+                <table class="table table-stripped">
+                    <tbody>
+                    <tr>
+                        <td>Nombre Sala</td>
+                        <td>Numero de Asientos</td>
+                        <td>Inicio de la Función</td>
+                        <td>Final de la Función</td>
+                        <td>Tipo de Sala</td>
+                        <td>Borrar</td>
+                        <td>Editar</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                        @for(sal of SalasArray; track sal.id){
+                        <tr>
+                            <td>
+                                {{
+                                    sal.nombre
+                                }}
+                            </td>
+                            <td>
+                                {{
+                                    sal.asiento
+                                }}
+                            </td>
+                            <td>
+                                {{
+                                    sal.inicio
+                                }}
+                            </td>
+                            <td>
+                                {{
+                                    sal.final
+                                }}
+                            </td>
+                            <td>
+                                {{
+                                    sal.tipo
+                                }}
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sn"
+                                (click)="BorrarSala(sal)"
+                                >Eliminar</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-info btn-sn" >Editar</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

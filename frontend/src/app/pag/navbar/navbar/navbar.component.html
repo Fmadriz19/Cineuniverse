@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <h1 class="fw-bolder fs-5" href="#!">Cinunivers</h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 link-secondary">Inicio</a></li>
+            @if (isLoggedIn){<li><a href="perfil" class="nav-link px-2 link-secondary">Perfil</a></li>}
+            @if (!admin){<li><a href="salas" class="nav-link px-2 link-secondary">Salas de Cine</a></li>}
+          </ul>
+    
+          <div class="col-md-3 text-end">
+            @if (!isLoggedIn){
+            <button (click)="login()" type="submit" class="btn btn-outline-primary me-2">Login</button>
+            <button (click)="registro()" type="submit"  class="btn btn-primary">Sign-up</button>
+            } @else{
+            <button (click)="cerrarSesion()" type="submit"  class="btn btn-primary">Cerrar Sesion</button>
+            }
+          </div>
+    </div>
+    
+
+</nav>

@@ -1,0 +1,45 @@
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                   <h3>Register Today</h3>
+                   <p>Fill in the data below.</p>
+                   <form class="requires-validation" novalidate>
+ 
+                      <div class="col-md-12">
+                         <input class="form-control" type="text" [(ngModel)]="first_name" [ngModelOptions]="{standalone: true}" name="floating_first_name" id="floating_first_name" placeholder="Name" required>
+                         <!-- <div class="valid-feedback">Username field is valid!</div>
+                         <div class="invalid-feedback">Username field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="col-md-12 mt-3">
+                            <input class="form-control" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" placeholder="E-mail Address" required>
+                            <!-- <div class="valid-feedback">Email field is valid!</div>
+                            <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="col-md-12 mt-3">
+                         <input class="form-control" type="text" [(ngModel)]="usuario" [ngModelOptions]="{standalone: true}" name="floating_last_name" id="floating_last_name" placeholder="User " required>
+                         <!-- <div class="valid-feedback">Email field is valid!</div>
+                         <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="col-md-12 mt-3">
+                         <input class="form-control" type="password" [(ngModel)]="contrasena" name="contrasena" placeholder="Password" required>
+                         <!-- <div class="valid-feedback">Password field is valid!</div>
+                         <div class="invalid-feedback">Password field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="form-button mt-3">
+                            <button id="submit" (click)="saveCliente()" type="submit" class="btn btn-primary">Register</button>
+                      </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+ 
+  

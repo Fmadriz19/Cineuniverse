@@ -1,0 +1,40 @@
+<form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Nombre</label>
+      <input type="email" [(ngModel)]="admin.nombre" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Apellido</label>
+      <input type="text" [(ngModel)]="admin.apellido" name="contrasena" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">cedula</label>
+      <input type="number" [(ngModel)]="admin.cedula" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Foto de Perfil</label>
+      <input type="password" [(ngModel)]="admin.imagen" name="contrasena" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Correo Electronico </label>
+      <input type="email" [(ngModel)]="admin.correo" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Pais</label>
+      <input type="text" [(ngModel)]="admin.pais" name="contrasena" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Estado</label>
+      <input type="text" [(ngModel)]="admin.estado" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Ciudad</label>
+      <input type="text" [(ngModel)]="admin.ciudad" name="contrasena" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Número telefonico</label>
+      <input type="number" [(ngModel)]="admin.telefono" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    
+    <button type="submit" (click)="actualizar()" class="btn btn-primary">Guardar Cambios</button>
+</form>
