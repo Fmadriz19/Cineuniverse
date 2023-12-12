@@ -7,28 +7,37 @@
                    <p>Fill in the data below.</p>
                    <form class="requires-validation" novalidate>
  
-                      <div class="col-md-12">
-                         <input class="form-control" type="text" [(ngModel)]="first_name" [ngModelOptions]="{standalone: true}" name="floating_first_name" id="floating_first_name" placeholder="Name" required>
-                         <!-- <div class="valid-feedback">Username field is valid!</div>
-                         <div class="invalid-feedback">Username field cannot be blank!</div> -->
+                     <div class="mb-3">
+                        <input [(ngModel)]="nombre" name="nombre" type="text" class="form-control border" aria-label="Sizing example input" placeholder="Nombre" aria-describedby="inputGroup-sizing-default">
+                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label> 
+                     </div>
+ 
+                      <div class="mb-3">
+                        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control border" id="exampleInputEmail1" placeholder="Correo Electrónico" aria-describedby="emailHelp">
+                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
+                        <label [hidden]="!invalidEmail" class="form-label text-danger">El formato de correo debe ser gmail.com</label>
+                        <label [hidden]="!regisEmail" class="form-label text-danger">El correo ya esta en uso</label>
                       </div>
  
-                      <div class="col-md-12 mt-3">
-                            <input class="form-control" type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" placeholder="E-mail Address" required>
-                            <!-- <div class="valid-feedback">Email field is valid!</div>
-                            <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      <div class="mb-3">
+                        <input type="text" [(ngModel)]="usuario" name="usuario" class="form-control border" placeholder="Usuario" id="exampleInputPassword1">
+                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
+                        <label [hidden]="!userInvalid" class="form-label text-danger">El usuario ya esta en uso</label>
                       </div>
  
-                      <div class="col-md-12 mt-3">
-                         <input class="form-control" type="text" [(ngModel)]="usuario" [ngModelOptions]="{standalone: true}" name="floating_last_name" id="floating_last_name" placeholder="User " required>
-                         <!-- <div class="valid-feedback">Email field is valid!</div>
-                         <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      <div class="mb-3">
+                        <input type="password" [(ngModel)]="contrasena" name="contrasena" class="form-control border" placeholder="Contraseña" id="exampleInputPassword1">
+                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label> 
+                     </div>
+
+                      <div class="mb-3">
+                        <input type="password" [(ngModel)]="contrasenaConfir" name="contrasenaConfir" class="form-control border" placeholder="Confirmar Contraseña" id="exampleInputPassword1">
+                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
+                        <label [hidden]="!userInvalid" class="form-label text-danger">El usuario ya esta en uso</label>
                       </div>
- 
-                      <div class="col-md-12 mt-3">
-                         <input class="form-control" type="password" [(ngModel)]="contrasena" name="contrasena" placeholder="Password" required>
-                         <!-- <div class="valid-feedback">Password field is valid!</div>
-                         <div class="invalid-feedback">Password field cannot be blank!</div> -->
+
+                      <div [hidden]="!contraConfir" class="alert alert-danger" role="alert">
+                        No conciden las contraseñas
                       </div>
  
                       <div class="form-button mt-3">

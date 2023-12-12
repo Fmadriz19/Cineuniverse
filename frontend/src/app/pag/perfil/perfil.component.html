@@ -1,48 +1,69 @@
 <div class="card text-center m-5">
     <div class="card-header">
-      Featured
+      Información Basica
     </div>
     <div class="d-flex border">
         <div class="p-2 flex-fill">Nombre</div>
         <div [(ngModel)]="admin.nombre" class="p-2 flex-fill">{{ admin.nombre }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.apellido" style="display: none">
     <div class="d-flex border">
         <div class="p-2 flex-fill">Apellido</div>
-        <div [(ngModel)]="admin.apellido" class="p-2 flex-fill">{{ admin.apellido }}</div>
+        <div class="p-2 flex-fill">{{ admin.apellido }}</div>
     </div>
+
     <div class="d-flex border">
         <div class="p-2 flex-fill">CI</div>
         <div [(ngModel)]="admin.cedula" class="p-2 flex-fill">{{ admin.cedula }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.correo" style="display: none">
     <div class="d-flex border">
-        <div class="p-2 flex-fill">Direccion</div>
-        <div [(ngModel)]="admin.correo" class="p-2 flex-fill">{{ admin.correo }}</div>
+        <div class="p-2 flex-fill">Correo Electrónico</div>
+        <div class="p-2 flex-fill">{{ admin.correo }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.pais" style="display: none">
+    <div class="d-flex border">
+        <div class="p-2 flex-fill">País</div>
+        <div class="p-2 flex-fill">{{ admin.pais }}</div>
+    </div>
+
+    <input type="text" [(ngModel)]="admin.estado" style="display: none">
     <div class="d-flex border">
         <div class="p-2 flex-fill">Estado</div>
-        <div [(ngModel)]="admin.pais" class="p-2 flex-fill">{{ admin.pais }}</div>
+        <div class="p-2 flex-fill">{{ admin.estado }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.ciudad" style="display: none">
     <div class="d-flex border">
         <div class="p-2 flex-fill">Ciudad</div>
-        <div [(ngModel)]="admin.estado" class="p-2 flex-fill">{{ admin.estado }}</div>
+        <div class="p-2 flex-fill">{{ admin.ciudad }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.direccion" style="display: none">
     <div class="d-flex border">
-        <div class="p-2 flex-fill">Telefono</div>
-        <div [(ngModel)]="admin.ciudad" class="p-2 flex-fill">{{ admin.ciudad }}</div>
+        <div class="p-2 flex-fill">Dirección</div>
+        <div class="p-2 flex-fill">{{ admin.direccion }}</div>
     </div>
+
+    <input type="text" [(ngModel)]="admin.telefono" style="display: none">
+    <div class="d-flex border">
+        <div class="p-2 flex-fill">Número Telefonico</div>
+        <div class="p-2 flex-fill">{{ admin.telefono }}</div>
+    </div>
+
+    <input type="text" [(ngModel)]="admin.usuario" style="display: none">
     <div class="d-flex border">
         <div class="p-2 flex-fill">Usuario</div>
-        <div [(ngModel)]="admin.telefono" class="p-2 flex-fill">{{ admin.telefono }}</div>
+        <div class="p-2 flex-fill">{{ admin.usuario }}</div>
     </div>
 
 
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-body-secondary">
-      2 days ago
+      <a href="clientes/edit" class="btn btn-primary">Editar Información</a>
+      <button (click)="getborrar()" type="button" class="btn btn-danger">Eliminar Cuenta</button>
     </div>
 </div>
 

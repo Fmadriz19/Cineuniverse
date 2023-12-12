@@ -16,7 +16,26 @@ export class SalasListComponent {
   SalasArray: any[] = [];
 
   constructor(private http: HttpClient, private router: Router) {
+
+    const userData = localStorage.getItem('userData');
+
+    if (userData) {
+      console.log('El usuario está logueado');
+      let parsedUserData = JSON.parse(userData);
+      // Utilizar el valor obtenido del localStorage
+      let tipoUser = parsedUserData.tipoUser;
+      console.log(tipoUser);
+
+      if (tipoUser == 0) {
+        this.router.navigateByUrl('');
+      }
+    } else {
+      console.log('El usuario no está logueado');
+      this.router.navigateByUrl('');
+    }
+
     this.getAllCliente();
+
   }
 
   getAllCliente() {

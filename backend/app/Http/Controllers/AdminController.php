@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+        /* ------ Mostrar todo ------ */
+
     public function index()
     {
         $clientes = Admin::all();
         return response()->json($clientes);
     }
 
+        /* ------ Crear ------ */
+
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        /* $validator = Validator::make($request->all(), [
             'nombre' => 'required|min:3',
             'correo' => 'required|min:11',
             'usuario' => 'required',
@@ -25,7 +30,7 @@ class AdminController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        }
+        } */
 
         $clientes = new Admin([
             'nombre' => $request->input('nombre'),
@@ -42,6 +47,30 @@ class AdminController extends Controller
             'tipoUser' => $request->input('tipoUser'),// si el tipo es 0 (es usuario) y si es 1 (es administrador)
         ]);
 
+        if (empty($request->nombre)) {
+            return response()->json([
+                'message'=> 'El nombre no puede estar vacio',
+            ], 400);
+        }
+
+        if (empty($request->correo)) {
+            return response()->json([
+                'message'=> 'El correo no puede estar vacio',
+            ], 400);
+        }
+
+        if (empty($request->usuario)) {
+            return response()->json([
+                'message'=> 'El usuario no puede estar vacio',
+            ], 400);
+        }
+
+        if (empty($request->contraseña)) {
+            return response()->json([
+                'message'=> 'La contrasena no puede estar vacio',
+            ], 400);
+        }
+
         if (strpos($request->correo, '@gmail.com') === false) {
             return response()->json([
                 'message'=> 'El correo debe ser de Gmail',
@@ -56,7 +85,7 @@ class AdminController extends Controller
 
         if(Admin::where('usuario', $request->usuario)->first()){
             return response()->json([
-                'message'=> 'El correo ya esta registrado',
+                'message'=> 'El usuario ya esta registrado',
             ], 400);
         }
 
@@ -74,12 +103,45 @@ class AdminController extends Controller
 
     }
 
+        /* ------ Actualizar ------ */
+
     public function update(Request $request, $id)
     {
         $clientes = Admin::find($id);
+
+        if (empty($request->correo)) {
+            return response()->json([
+                'message'=> 'El correo no puede estar vacio',
+            ], 400);
+        }
+
+        if (strpos($request->correo, '@gmail.com') === false) {
+            return response()->json([
+                'message'=> 'El correo debe ser de Gmail',
+            ], 400);
+        }
+
+        // Verificar si el correo ya está registrado para otro usuario
+        $existingAdmin = Admin::where('correo', $request->correo)->where('id', '!=', $id)->first();
+        if($existingAdmin){
+            return response()->json([
+                'message'=> 'El correo ya está registrado',
+            ], 400);
+        }
+        // Verificar si el correo ya está registrado para otro usuario
+        $existingAdmin = Admin::where('usuario', $request->usuario)->where('id', '!=', $id)->first();
+        if($existingAdmin){
+            return response()->json([
+                'message'=> 'El usuario ya esta registrado',
+            ], 400);
+        }
+
         $clientes->update($request->all());
         return response()->json('Datos de cliente actualizados!');
     }
+
+
+        /* ------ Buscar Usuario ------ */
 
     public function show($id)
     {
@@ -87,12 +149,18 @@ class AdminController extends Controller
         return response()->json($contact);
     }
 
+
+        /* ------ Eliminar ------ */
+
     public function destroy($id)
     {
         $clientes = Admin::find($id);
         $clientes->delete();
         return response()->json('Cliente eliminado!');
     }
+
+
+        /* ------ Iniciar Sesion ------ */
 
     public function login(Request $request)
     {

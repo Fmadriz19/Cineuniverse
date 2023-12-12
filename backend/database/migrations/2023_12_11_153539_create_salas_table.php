@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 25);
             $table->integer('asiento');
-            $table->time('inicio'); 
-            $table->time('final'); 
+            $table->string('inicio'); 
+            $table->string('final'); 
             $table->string('tipo', 25); 
             $table->timestamps();
         });

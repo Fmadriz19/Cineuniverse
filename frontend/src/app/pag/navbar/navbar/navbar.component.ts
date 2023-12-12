@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http'; // Asegúrate de importar Htt
 export class NavbarComponent implements OnInit{
   isLoggedIn = false;
   admin = true;
+  showModal = false;
 
   constructor( private router: Router, private http: HttpClient){
 
@@ -48,10 +49,10 @@ export class NavbarComponent implements OnInit{
       let tipoUser = parsedUserData.tipoUser;
       console.log(id);
       console.log(tipoUser);
-      this.isLoggedIn = true;
+      this.showModal = false;
     } else {
       // No se encontró ningún valor en el localStorage
-      this.isLoggedIn = false;
+      this.showModal = true;
       console.log('No se encontró ningún dato en el localStorage');
     }
   }
@@ -69,12 +70,13 @@ export class NavbarComponent implements OnInit{
       console.log(tipoUser);
 
       if (tipoUser == 1) {
-        this.admin = false; // Retorna falso sintipoUser es igual a 1
+        this.admin = true; // Retorna falso sintipoUser es igual a 1
       } else if (tipoUser == 0) {
-        this.admin = true; // Retorna verdadero si tipoUser es igual a 0
+        this.admin = false; // Retorna verdadero si tipoUser es igual a 0
       }
     } else {
       // No se encontró ningún valor en el localStorage
+      this.admin= false;
       console.log('No se encontró ningún dato en el localStorage');
     }
 

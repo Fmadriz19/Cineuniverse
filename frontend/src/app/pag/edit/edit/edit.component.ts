@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,8 +19,21 @@ export class EditComponent {
   admin!: any;
   email: string='';
   password: string='';
+  validEmail = false;
+  invalidEmail = false;
+  regisEmail = false;
+  userInvalid = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    const userData = localStorage.getItem('userData');
+
+    if (userData) {
+      console.log('El usuario está logueado');
+    } else {
+      console.log('El usuario no está logueado');
+      this.router.navigateByUrl('');
+    }
+  }
 
   ngOnInit() {
     this.getUser();
@@ -65,15 +79,34 @@ export class EditComponent {
       estado: this.admin.estado,
       ciudad: this.admin.ciudad,
       telefono: this.admin.telefono,
+      usuario: this.admin.usuario,
     }
 
     this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
       next: (res: any) => {
         console.log(res)
         alert('Usuario Actualizado')
+        this.router.navigateByUrl('perfil');
       },
       error: (err: any) => {
-        console.log(err)
+        console.log(err.error.message);
+        if (err.error.message == 'El correo no puede estar vacio') {
+          this.validEmail = true;
+        } else if (err.error.message === 'El correo debe ser de Gmail') {
+          this.validEmail = false;
+          this.invalidEmail = true;
+        
+        } else if (err.error.message === 'El correo ya está registrado') {
+          this.validEmail = false;
+          this.invalidEmail = false;
+          this.regisEmail = true;
+        }
+         else if (err.error.message === 'El usuario ya esta registrado') {
+          this.validEmail = false;
+          this.invalidEmail = false;
+          this.regisEmail = false;
+          this.userInvalid = true;
+        }
       }
     });
   }
