@@ -18,7 +18,7 @@
 
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">cedula</label>
-      <input type="number" [(ngModel)]="admin.cedula" [ngModelOptions]="{standalone: true}" name="cedula" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="number" min="1" [(ngModel)]="admin.cedula" [ngModelOptions]="{standalone: true}" name="cedula" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
 
     <div class="mb-3">

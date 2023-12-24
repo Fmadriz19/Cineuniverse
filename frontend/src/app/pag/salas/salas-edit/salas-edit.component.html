@@ -1,1 +1,51 @@
-<p>salas-edit works!</p>
+<div class="form-body m-4">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                   <h3>Register Today</h3>
+                   <p>Fill in the data below.</p>
+                   <form class="requires-validation" novalidate>
+ 
+                      <div class="col-md-12">
+                         <input class="form-control" type="text" [(ngModel)]="admin.nombre" [ngModelOptions]="{standalone: true}" name="nombre" id="floating_first_name" placeholder="Nombre de la Sala" required>
+                         <!-- <div class="valid-feedback">Username field is valid!</div>
+                         <div class="invalid-feedback">Username field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="col-md-12 mt-3">
+                            <input class="form-control" type="number" [(ngModel)]="admin.asiento" [ngModelOptions]="{standalone: true}" name="asiento" id="floating_email" placeholder="Numero de Asientos" required>
+                            <!-- <div class="valid-feedback">Email field is valid!</div>
+                            <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="col-md-12 mt-3 ">
+                         <input class="form-control" type="time" [(ngModel)]="admin.inicio" [ngModelOptions]="{standalone: true}" name="inicio" id="horaInicio" required>
+                         <!-- <div class="valid-feedback">Email field is valid!</div>
+                         <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      </div>
+
+                      <div class="col-md-12 mt-3">
+                         <input class="form-control" type="time" [(ngModel)]="admin.final" [ngModelOptions]="{standalone: true}" name="final" id="floating_last_name" required>
+                         <!-- <div class="valid-feedback">Email field is valid!</div>
+                         <div class="invalid-feedback">Email field cannot be blank!</div> -->
+                      </div>
+ 
+                      <div class="input-group mb-3 mt-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Tipo de Sala</label>
+                        <select class="form-select" id="inputGroupSelect01" (change)="onComboboxChange($event)" [formControl]="nombreControl">
+                          <option value="Normal">Normal</option>
+                          <option value="3D">3D</option>
+                          <option value="Premium">Premiun</option>
+                        </select>
+                      </div>
+ 
+                      <div class="form-button mt-3">
+                            <button id="submit" (click)="actualizar()" type="submit" class="btn btn-primary">Guardar Cambios</button>
+                      </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

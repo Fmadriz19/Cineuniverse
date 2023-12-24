@@ -16,6 +16,7 @@ import { PerfilComponent } from './pag/perfil/perfil.component';
 import { SalaEntidad } from './pag/salas/dto/sala-entidad';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({

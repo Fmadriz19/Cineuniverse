@@ -34,11 +34,11 @@ export class SalasListComponent {
       this.router.navigateByUrl('');
     }
 
-    this.getAllCliente();
+    this.getAllSala();
 
   }
 
-  getAllCliente() {
+  getAllSala() {
     this.http.get("http://127.0.0.1:8000/api/salas").subscribe((resultData: any)=> {
         //console.log(resultData);
         this.SalasArray = resultData;
@@ -54,8 +54,11 @@ export class SalasListComponent {
     this.http.delete(`http://127.0.0.1:8000/api/sala/${sala.id}`).subscribe((resultData: any)=> {
       //console.log(resultData);
       this.SalasArray = resultData;
-      this.getAllCliente();
+      this.getAllSala();
   });
   }
 
+  EditarSala(sal: SalaEntidad): void{
+    this.router.navigateByUrl(`/salas/edit/${sal.id}`);
+  }
 }

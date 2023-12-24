@@ -20,6 +20,7 @@ export class LoginComponent {
   password: string='';
   emailError: any; 
   passwordError: any;
+  
   validEmail = false;
   invalidEmail = false;
   validPassword = false;
@@ -53,8 +54,8 @@ export class LoginComponent {
         localStorage.setItem('userData', JSON.stringify(res));
         console.log(res)
         alert('Inicio de sesion completa')
+        location.reload();
         this.router.navigateByUrl('/');
-
       },
       error: (err: any) => {
         console.log(err.error.message);
@@ -83,9 +84,7 @@ export class LoginComponent {
     });
   }
 
-  
-/* 
-
-
- */
+  acceso(){
+    this.router.navigateByUrl('registre');
+  }
 }

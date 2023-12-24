@@ -109,7 +109,7 @@ class AdminController extends Controller
     {
         $clientes = Admin::find($id);
 
-        if (empty($request->correo)) {
+        /* if (empty($request->correo)) {
             return response()->json([
                 'message'=> 'El correo no puede estar vacio',
             ], 400);
@@ -119,7 +119,7 @@ class AdminController extends Controller
             return response()->json([
                 'message'=> 'El correo debe ser de Gmail',
             ], 400);
-        }
+        } */
 
         // Verificar si el correo ya está registrado para otro usuario
         $existingAdmin = Admin::where('correo', $request->correo)->where('id', '!=', $id)->first();
@@ -128,7 +128,7 @@ class AdminController extends Controller
                 'message'=> 'El correo ya está registrado',
             ], 400);
         }
-        // Verificar si el correo ya está registrado para otro usuario
+        // Verificar si el usuario ya está registrado para otro usuario
         $existingAdmin = Admin::where('usuario', $request->usuario)->where('id', '!=', $id)->first();
         if($existingAdmin){
             return response()->json([

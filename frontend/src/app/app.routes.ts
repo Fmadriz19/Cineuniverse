@@ -16,6 +16,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent, title: 'Iniciar Sesion' },
     { path: 'salas', component: SalasListComponent, title: 'Listado de Salas' },
     { path: 'salas/create', component: SalasCreateComponent, title: 'Crear Nueva Sala' },
-    { path: 'salas/edit', component: SalasEditComponent, title: 'Edicion de Salas' },
+    { path: 'salas/edit/:id', component: SalasEditComponent, title: 'Edicion de Salas' },
     { path: 'perfil', component: PerfilComponent, title: 'Perfil' }
   ];

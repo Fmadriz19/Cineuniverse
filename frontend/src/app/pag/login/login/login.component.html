@@ -1,20 +1,34 @@
+<div class="form-body">
+  <div class="row">
+      <div class="form-holder bg-secondary-subtle">
+          <div class="form-content">
+              <div class="form-items border border-primary bg-light">
+                <h3 class="ms-3">Iniciar Sesion</h3>
+                <form>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label text-dark">Correo Electrónico</label>
+                      <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control border border border-primary bg-light" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <label [hidden]="!validEmail" class="form-label text-danger mt-2">Este campo es obligatorio</label>
+                      <label [hidden]="!invalidEmail" class="form-label text-danger mt-2">El formato de correo debe ser gmail.com</label>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label text-dark">Contraseña</label>
+                      <input type="password" [(ngModel)]="password" name="contrasena" class="form-control border border border-primary bg-light" id="exampleInputPassword1">
+                      <label [hidden]="!validPassword" class="form-label text-danger mt-2">Este campo es obligatorio</label>
+                      <label [hidden]="!invalidPassword" class="form-label text-danger mt-2">La contraseña debe tener al menos 6 caracteres</label>
+                    </div>
+                    <div [hidden]="!showModal" class="alert alert-danger" role="alert">
+                      el correo y la contraseña no coinciden!
+                    </div>
+                    <button type="submit" (click)="login()" class="btn btn-primary">Iniciar Sesion</button>
+                    <div class="form-button mt-3">
+                      <label class="text-black bg-white">¿No tienes una cuenta?</label>
+                      <button type="button" (click)="acceso()" class="btn btn-link">Registrar</button>
+                </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+ </div>
 
-
-<form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <label [hidden]="!validEmail" class="form-label text-danger">Este campo es obligatorio</label>
-      <label [hidden]="!invalidEmail" class="form-label text-danger">El formato de correo debe ser gmail.com hotmail.com</label>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" [(ngModel)]="password" name="contrasena" class="form-control" id="exampleInputPassword1">
-      <label [hidden]="!validPassword" class="form-label text-danger">Este campo es obligatorio</label>
-      <label [hidden]="!invalidPassword" class="form-label text-danger">La contraseña debe tener al menos 6 caracteres</label>
-    </div>
-    <div [hidden]="!showModal" class="alert alert-danger" role="alert">
-      el correo y la contraseña no coinciden!
-    </div>
-    <button type="submit" (click)="login()" class="btn btn-primary">Iniciar Sesion</button>
-</form>

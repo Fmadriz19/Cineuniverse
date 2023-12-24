@@ -1,7 +1,8 @@
 import { FormsModule } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-registre',
@@ -29,7 +30,7 @@ export class RegistreComponent implements OnInit{
 
   currentClienteID = "";
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private elementRef: ElementRef) {
     this.getAllCliente();
     const userData = localStorage.getItem('userData');
 
@@ -79,7 +80,7 @@ export class RegistreComponent implements OnInit{
         error: (err: any) => {
           console.log(err.error.message);
           if (err.error.message == 'El nombre no puede estar vacio') {
-
+            this.validCamp = true;
           } else if (err.error.message === 'El correo debe ser de Gmail') {
             this.validEmail = false;
             this.validCamp = false;
@@ -105,6 +106,20 @@ export class RegistreComponent implements OnInit{
     if(this.currentClienteID == '') {
       this.register();
     }
+  }
+
+  acceso(){
+    this.router.navigateByUrl('login');
+  }
+
+  ngAfterViewInit() {
+    const togglePassword = this.elementRef.nativeElement.querySelector('#togglePassword');
+    const passwordInput = this.elementRef.nativeElement.querySelector('#inputPassword');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+    });
   }
 
 }
