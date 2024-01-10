@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule],
+  imports: [FormsModule, HttpClientModule, CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    AsyncPipe,],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css'
 })
@@ -23,6 +31,10 @@ export class EditComponent {
   invalidEmail = false;
   regisEmail = false;
   userInvalid = false;
+  codigoPais = 0;
+
+  @ViewChild('input') input: ElementRef<HTMLInputElement>;
+
 
   constructor(private http: HttpClient, private router: Router) { 
     const userData = localStorage.getItem('userData');
@@ -33,7 +45,9 @@ export class EditComponent {
       console.log('El usuario no está logueado');
       this.router.navigateByUrl('');
     }
+
   }
+
 
   ngOnInit() {
     this.getUser();
@@ -50,8 +64,7 @@ export class EditComponent {
       // Utilizar el valor obtenido del localStorage
       this.userID = parsedUserData.id;
       this.tipoUser = parsedUserData.tipoUser;
-      console.log(this.userID);
-      console.log(this.tipoUser);
+
       this.getUpdate();
     } else {
       // No se encontró ningún valor en el localStorage
@@ -64,10 +77,14 @@ export class EditComponent {
     this.http.get(`http://127.0.0.1:8000/api/admin/${this.userID}`).subscribe((data: any) => {
       this.admin = data;
       console.log(this.admin);
+      this.numPais();
     });
+    
   }
 
   actualizar(){
+    let cell = this.codigoPais.toString() + this.admin.telefono.toString();
+
     var inputData ={
       nombre: this.admin.nombre,
       apellido: this.admin.apellido,
@@ -78,11 +95,14 @@ export class EditComponent {
       pais: this.admin.pais,
       estado: this.admin.estado,
       ciudad: this.admin.ciudad,
-      telefono: this.admin.telefono,
+      telefono: cell,
       usuario: this.admin.usuario,
     }
 
-    this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
+
+    console.log(inputData);
+
+    /* this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
       next: (res: any) => {
         console.log(res)
         alert('Usuario Actualizado')
@@ -108,6 +128,23 @@ export class EditComponent {
           this.userInvalid = true;
         }
       }
-    });
+    }); */
+  }
+  
+  //  Funcion para definir el numero telefonico del pais
+  numPais(){
+    let valor = this.admin.pais;
+    const spanElement = document.querySelector('.input-group-text');
+
+    if (spanElement) {
+      if(valor === 'Venezuela'){
+        spanElement.textContent = '+58';
+        this.codigoPais = 58;
+      } else if(valor === 'Colombia'){
+        spanElement.textContent = '+57';
+      } else if(valor === 'Chile'){
+        spanElement.textContent = '+56';
+      }
+    }
   }
 }

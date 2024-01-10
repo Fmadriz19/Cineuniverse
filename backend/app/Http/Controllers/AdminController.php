@@ -39,6 +39,7 @@ class AdminController extends Controller
             'imagen' => $request->input('imagen'),
             'correo' => $request->input('correo'),
             'direccion' => $request->input('direccion'),
+            'pais' => $request->input('pais'),
             'estado' => $request->input('estado'),
             'ciudad' => $request->input('ciudad'),
             'telefono' => $request->input('telefono'),

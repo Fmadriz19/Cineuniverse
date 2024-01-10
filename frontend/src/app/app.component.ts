@@ -14,17 +14,28 @@ import { SalasCreateComponent } from './pag/salas/salas-create/salas-create.comp
 import { SalasEditComponent } from './pag/salas/salas-edit/salas-edit.component';
 import { PerfilComponent } from './pag/perfil/perfil.component';
 import { SalaEntidad } from './pag/salas/dto/sala-entidad';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FooterComponent } from './pag/footer/footer/footer.component';
+import { AsyncPipe } from '@angular/common';
 
+/* import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; */
 
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [ NgModule, AdminServiceService, SalaEntidad, DatePipe],
   imports: [CommonModule, RouterOutlet, RegistreComponent, LoginComponent, EditComponent, HomeComponent, HttpClientModule, NavbarComponent,
-    SalasListComponent, SalasCreateComponent, SalasEditComponent, PerfilComponent, ReactiveFormsModule],
+    SalasListComponent, SalasCreateComponent, SalasEditComponent, PerfilComponent, ReactiveFormsModule,
+    MatFormFieldModule, MatInputModule, MatAutocompleteModule, FooterComponent, FormsModule, AsyncPipe, MatNativeDateModule,
+    MatButtonToggleModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

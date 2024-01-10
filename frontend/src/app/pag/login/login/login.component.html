@@ -1,10 +1,11 @@
 <div class="form-body">
   <div class="row">
-      <div class="form-holder bg-secondary-subtle">
+      <div class="form-holder">
           <div class="form-content">
-              <div class="form-items border border-primary bg-light">
+              <div class="form-items border bg-light">
                 <h3 class="ms-3">Iniciar Sesion</h3>
                 <form>
+                  
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label text-dark">Correo Electrónico</label>
                       <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control border border border-primary bg-light" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -13,14 +14,24 @@
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label text-dark">Contraseña</label>
-                      <input type="password" [(ngModel)]="password" name="contrasena" class="form-control border border border-primary bg-light" id="exampleInputPassword1">
+                      
+                      <div class="input-group mb-3">
+                        <input type="password" [(ngModel)]="password" name="contrasena" class="form-control border border border-primary bg-light" id="inputPassword">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                          <i class="fa-solid fa-ghost"></i>
+                        </button>
+                      </div>
                       <label [hidden]="!validPassword" class="form-label text-danger mt-2">Este campo es obligatorio</label>
                       <label [hidden]="!invalidPassword" class="form-label text-danger mt-2">La contraseña debe tener al menos 6 caracteres</label>
                     </div>
+
                     <div [hidden]="!showModal" class="alert alert-danger" role="alert">
                       el correo y la contraseña no coinciden!
                     </div>
-                    <button type="submit" (click)="login()" class="btn btn-primary">Iniciar Sesion</button>
+
+                    <button type="submit" (click)="accion()" class="btn btn-primary">Iniciar Sesion
+                      <span [hidden]="!reload" class="loader" style="float: left;"></span>
+                    </button>
                     <div class="form-button mt-3">
                       <label class="text-black bg-white">¿No tienes una cuenta?</label>
                       <button type="button" (click)="acceso()" class="btn btn-link">Registrar</button>

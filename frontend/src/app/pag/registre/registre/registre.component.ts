@@ -14,21 +14,43 @@ import { Router } from '@angular/router';
 export class RegistreComponent implements OnInit{
   ClienteArray: any[] = [];
 
+  // Variables
   nombre: string = "";
   usuario: string = "";
   email: string = "";
   contrasena: string = "";
   contrasenaConfir: string = "";
   tipo: string = "0";
-  
+  pais: string = "";
+  estado: string = "";
+  ciudad: string = "";
+
+  // Validaciones
   validEmail = false;
   invalidEmail = false;
   regisEmail = false;
   userInvalid = false;
   contraConfir = false;
   validCamp = false;
+  reload = false;
 
   currentClienteID = "";
+
+  // Inputs Habilitados
+  segundoInput: boolean;
+  tercerInput: boolean;
+
+  // Inputs de estados
+
+  visiEstado = false;
+  // Venezuela
+  visiVenezuela = false;
+  // Colombia
+  visiColombia = false;
+  // Chile
+  visiChile = false;
+
+  // Inputs de Ciudades
 
   constructor(private http: HttpClient, private router: Router, private elementRef: ElementRef) {
     this.getAllCliente();
@@ -59,6 +81,9 @@ export class RegistreComponent implements OnInit{
       "nombre": this.nombre,
       "usuario": this.usuario,
       "correo": this.email,
+      "pais": this.pais,
+      "estado": this.estado,
+      "ciudad": this.ciudad,
       "contraseña": this.contrasena,
       "tipoUser": this.tipo,
     };
@@ -102,24 +127,87 @@ export class RegistreComponent implements OnInit{
 
   }
 
-  saveCliente() {
-    if(this.currentClienteID == '') {
-      this.register();
-    }
+
+
+  accion(){
+    this.reload = true;
+    this.ejecutarAccion();
+  }
+
+  ejecutarAccion() {
+    setTimeout(() => {
+      // Coloca aquí la acción que deseas ejecutar después de 2 segundos
+      this.reload = false;
+
+      if(this.currentClienteID == '') {
+        if (this.contrasena === this.contrasenaConfir){
+          this.contraConfir = false;
+          this.register();
+        } else {
+          this.contraConfir = true;
+        } 
+      }
+    }, 4000); // 2000 milisegundos = 2 segundos
   }
 
   acceso(){
     this.router.navigateByUrl('login');
   }
 
+  //    Funcion para cambiar el tipo de los inputs de contraseña y confirmar contraseña de password a text
+
   ngAfterViewInit() {
     const togglePassword = this.elementRef.nativeElement.querySelector('#togglePassword');
     const passwordInput = this.elementRef.nativeElement.querySelector('#inputPassword');
+    const togglePassword2 = this.elementRef.nativeElement.querySelector('#togglePassword-2');
+    const passwordInput2 = this.elementRef.nativeElement.querySelector('#inputPasswordConfir');
 
     togglePassword.addEventListener('click', () => {
       const type = passwordInput.type === 'password' ? 'text' : 'password';
       passwordInput.type = type;
     });
+    
+
+    togglePassword2.addEventListener('click', () => {
+      const type = passwordInput2.type === 'password' ? 'text' : 'password';
+      passwordInput2.type = type;
+    });
+  }
+
+  //    Aqui seran las funciones para habilitar los inputs de Estados y Ciudad. Lo cual a su vez funcionan para que aparezcan los inputs correspondiente para 
+  //    el autocompletado de cada pais
+
+  habilitarSegundoInput(){
+    if (this.pais === 'Venezuela') {
+      this.visiEstado = true;
+      this.visiVenezuela = true;
+      this.visiChile = false;
+      this.visiColombia = false;
+    } else if (this.pais === 'Colombia'){
+      this.visiEstado = true;
+      this.visiVenezuela = false;
+      this.visiChile = false;
+      this.visiColombia = true;
+    } else if (this.pais === 'Chile'){
+      this.visiEstado = true;
+      this.visiVenezuela = false;
+      this.visiChile = true;
+      this.visiColombia = false;
+    } else {
+      this.visiEstado = false; 
+      this.segundoInput = false;
+      this.visiVenezuela = false;
+      this.visiChile = false;
+      this.visiColombia = false;
+    }
+  }
+
+  habilitarTercerInput(){
+    if (this.estado) {
+      this.tercerInput = true;
+    } else {
+      this.tercerInput = false;
+    }
   }
 
 }

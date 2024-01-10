@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -26,8 +26,9 @@ export class LoginComponent {
   validPassword = false;
   invalidPassword = false;
   showModal = false;
+  reload = false;
 
-  constructor( private router: Router, private route: ActivatedRoute, private adminService: AdminServiceService, private http: HttpClient) { 
+  constructor( private router: Router, private route: ActivatedRoute, private adminService: AdminServiceService, private http: HttpClient, private elementRef: ElementRef) { 
 
     const userData = localStorage.getItem('userData');
 
@@ -84,7 +85,31 @@ export class LoginComponent {
     });
   }
 
+  accion(){
+    this.reload = true;
+    this.ejecutarAccion();
+  }
+
+  ejecutarAccion() {
+    setTimeout(() => {
+      // Coloca aquí la acción que deseas ejecutar después de 2 segundos
+      this.reload = false;
+      this.login();
+    }, 4000); // 2000 milisegundos = 2 segundos
+  }
+
   acceso(){
     this.router.navigateByUrl('registre');
+  }
+
+  //    Funcion para cambiar el tipo de los input de contraseña de password a text
+  ngAfterViewInit() {
+    const togglePassword = this.elementRef.nativeElement.querySelector('#togglePassword');
+    const passwordInput = this.elementRef.nativeElement.querySelector('#inputPassword');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+    });
   }
 }

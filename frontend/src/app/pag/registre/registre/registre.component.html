@@ -1,124 +1,218 @@
 <div class="form-body">
     <div class="row">
-        <div class="form-holder bg-secondary-subtle">
+        <div class="form-holder">
             <div class="form-content">
-                <div class="form-items border border-primary bg-light">
-                   <h3 class="text-center">Bienvenido a Cinunivers</h3>
-                   <p class="text-sm-center fs-6">Registrate para que te enteres de todas las novedades</p>
-                   <form class="requires-validation" novalidate>
- 
-                     <!-- <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label text-dark">Nombre</label>
-                        <input [(ngModel)]="nombre" name="nombre" type="text" class="form-control border border border-primary bg-light text-dark" aria-label="Sizing example input" placeholder="Nombre" aria-describedby="inputGroup-sizing-default">
-                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label> 
-                     </div> -->
 
-                     <div class="input-group input-group-sm mb-3">
-                      <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                      <input [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                      
-                    </div>
+              <div class="">
+                <h3></h3>
+              </div>
 
-                    <div class="mb-3">
-                      <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label> 
-                    </div>
- 
-                      <!-- <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label text-dark">Nombre</label>
-                        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="floating_email" id="floating_email" class="form-control border border border-primary bg-light text-dark" id="exampleInputEmail1" placeholder="Correo Electrónico" aria-describedby="emailHelp">
-                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
-                        <label [hidden]="!invalidEmail" class="form-label text-danger">El formato de correo debe ser gmail.com</label>
-                        <label [hidden]="!regisEmail" class="form-label text-danger">El correo ya esta en uso</label>
-                      </div> -->
+              <div class="form-items border ">
+                  <h3 class="text-center">Bienvenido a Cinunivers</h3>
+                  <p class="text-sm-center fs-6">Registrate para que te enteres de todas las novedades</p>
+                  <form class="requires-validation" novalidate>
 
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Correo Electrónico</span>
-                        <input [(ngModel)]="email" name="floating_email" type="text" placeholder="Correo Electronico" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        
-                      </div>
+                  <!-- Nombre  -->
 
-                      <div class="mb-3">
-                        <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label>
-                        <label [hidden]="!invalidEmail" class="form-label text-danger fs-6">El formato de correo debe ser gmail.com</label>
-                        <label [hidden]="!regisEmail" class="form-label text-danger fs-6">El correo ya esta en uso</label>
-                      </div>
- 
-                      <!-- <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label text-dark">Nombre</label>
-                        <input type="text" [(ngModel)]="usuario" name="usuario" class="form-control border border border-primary bg-light text-dark" placeholder="Usuario" id="exampleInputPassword1">
-                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
-                        <label [hidden]="!userInvalid" class="form-label text-danger">El usuario ya esta en uso</label>
-                      </div> -->
+                    <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                    <input [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    
+                  </div>
 
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Usuario</span>
-                        <input [(ngModel)]="usuario" name="usuario" type="text" placeholder="Usuario" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        
-                    </div>
+                  <div class="mb-3">
+                    <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label> 
+                  </div>
 
-                    <div class="mb-3">
-                      <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label>
-                      <label [hidden]="!userInvalid" class="form-label text-danger fs-6">El usuario ya esta en uso</label> 
-                   </div>
- 
-                      <!-- <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label text-dark">Nombre</label>
-                        <input type="password" [(ngModel)]="contrasena" name="contrasena" class="form-control border border border-primary bg-light text-dark" placeholder="Contraseña" id="exampleInputPassword1">
-                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label> 
-                     </div> -->
-
-                     <div class="input-group input-group-sm mb-3">
-                      <span class="input-group-text" id="inputGroup-sizing-sm">Contraseña</span>
-                      <input [(ngModel)]="contrasena" name="contrasena" type="password" placeholder="Contraseña" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  <!-- Correo  -->
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Correo Electrónico</span>
+                      <input [(ngModel)]="email" name="floating_email" type="text" placeholder="Correo Electronico" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                       
                     </div>
 
                     <div class="mb-3">
                       <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label>
+                      <label [hidden]="!invalidEmail" class="form-label text-danger fs-6">El formato de correo debe ser gmail.com</label>
+                      <label [hidden]="!regisEmail" class="form-label text-danger fs-6">El correo ya esta en uso</label>
                     </div>
 
-                      <!-- <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label text-dark">Nombre</label>
-                        <input type="password" [(ngModel)]="contrasenaConfir" name="contrasenaConfir" class="form-control border border border-primary bg-light text-dark" placeholder="Confirmar Contraseña" id="exampleInputPassword1">
-                        <label [hidden]="!validCamp" class="form-label text-danger">Este campo es obligatorio</label>
-                        <label [hidden]="!userInvalid" class="form-label text-danger">El usuario ya esta en uso</label>
-                      </div> -->
-
-                      <div class="input-group input-group-sm mb-3">
-                      <span class="input-group-text" id="inputGroup-sizing-sm">Confirmar Contraseña</span>
-                      <input [(ngModel)]="contrasenaConfir" name="contrasenaConfir" type="password" placeholder="Confirmar Contraseña" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  <!-- Usuario  -->
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Usuario</span>
+                      <input [(ngModel)]="usuario" name="usuario" type="text" placeholder="Usuario" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                       
-                    </div>
+                  </div>
 
-                    <div class="mb-3">
-                      <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label> 
-                    </div>
+                  <div class="mb-3">
+                    <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label>
+                    <label [hidden]="!userInvalid" class="form-label text-danger fs-6">El usuario ya esta en uso</label> 
+                  </div>
 
-                      <div [hidden]="!contraConfir" class="alert alert-danger" role="alert">
-                        No conciden las contraseñas
-                      </div>
+                  <!-- Paises  -->
 
-                      <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="inputPassword">
-                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                          <i class="fa-solid fa-ghost"></i>
-                        </button>
-                      </div>
- 
-                      <div class="d-grid gap-2 d-md-block">
-                            <button id="submit" (click)="saveCliente()" type="submit" class="btn btn-primary">Register</button>
-                            <label class="text-black bg-white ms-2" for="">¿Ya tienes cuenta?</label>
-                            <button type="button" (click)="acceso()" class="btn btn-link">Login</button>
-                      </div>
-                   </form>
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais</span>
+                    <input (input)="habilitarSegundoInput()" [(ngModel)]="pais" name="pais" type="text" list="framepais" placeholder="Pais" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+
+                  <!-- Estados  -->
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
+                    <input [hidden]="visiEstado" [disabled]="!segundoInput" type="text" placeholder="Estado" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input (input)="habilitarTercerInput()" [hidden]="!visiVenezuela" [(ngModel)]="estado" name="estado" list="estadosVene" type="text" placeholder="Estado" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input (input)="habilitarTercerInput()" [hidden]="!visiColombia" [(ngModel)]="estado" name="estado" list="estadosColo" type="text" placeholder="Estado" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input (input)="habilitarTercerInput()" [hidden]="!visiChile" [(ngModel)]="estado" name="estado" list="estadosChil" type="text" placeholder="Estado" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    
+                </div>
+
+                  <!--  Ciudades  -->
+
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Ciudad</span>
+                    <input [disabled]="!tercerInput" [(ngModel)]="ciudad" name="ciudad" type="text" placeholder="Ciudad" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    
+                </div>
+
+                  <!--  Contraseña  -->
+
+                    <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Contraseña</span>
+                    <input [(ngModel)]="contrasena" name="contrasena" id="inputPassword" type="password" placeholder="Contraseña" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                      <i class="fa-solid fa-ghost"></i>
+                    </button>
+                  </div>
+
+                  <div class="mb-3">
+                    <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label>
+                  </div>
+
+                    <!--  Confirmar Contraseña  -->
+
+                    <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Confirmar Contraseña</span>
+                    <input [(ngModel)]="contrasenaConfir" name="contrasenaConfir" id="inputPasswordConfir" type="password" placeholder="Confirmar Contraseña" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword-2">
+                      <i class="fa-solid fa-ghost"></i>
+                    </button>
+                  </div>
+
+                  <div class="mb-3">
+                    <label [hidden]="!validCamp" class="form-label text-danger fs-6">Este campo es obligatorio</label> 
+                  </div>
+
+                    <div [hidden]="!contraConfir" class="alert alert-danger" role="alert">
+                      No conciden las contraseñas
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-block position-relative">
+                      <button id="submit" (click)="accion()" type="submit" class="btn btn-primary">Register
+                        <span [hidden]="!reload" class="loader" style="float: left;"></span>
+                      </button>
+                      
+                      <div class="position-absolute bottom-0 end-0">
+                        <label class="text-black bg-white ms-2" for="">¿Ya tienes cuenta?</label>
+                        <button type="button" (click)="acceso()" class="btn btn-link">Login</button>
+                      </div>
+                          
+                    </div>
+                  </form>
+              </div>
+
             </div>
         </div>
     </div>
  </div>
- 
 
 
- 
- 
-  
+ <!--     Lista de Paises      --> 
+ <datalist id="framepais">
+  <option value="Venezuela"></option>
+  <option value="Chile"></option>
+  <option value="Colombia"></option>
+</datalist>
+
+ <!--     Estados de Venezuela      --> 
+ <datalist id="estadosVene">
+  <option value="Amazonas"></option>
+  <option value="Anzoátegui"></option>
+  <option value="Apure"></option>
+  <option value="Aragua"></option>
+  <option value="Barinas"></option>
+  <option value="Bolivar"></option>
+  <option value="Carabobo"></option>
+  <option value="Cojedes"></option>
+  <option value="Delta Amacuro"></option>
+  <option value="Distrito Capital"></option>
+  <option value="Falcon"></option>
+  <option value="Guárico"></option>
+  <option value="Lara"></option>
+  <option value="Merida"></option>
+  <option value="Miranda"></option>
+  <option value="Monagas"></option>
+  <option value="Nueva Esparta"></option>
+  <option value="Portuguesa"></option>
+  <option value="Sucre"></option>
+  <option value="Táchira"></option>
+  <option value="Trujillo"></option>
+  <option value="Vargas"></option>
+  <option value="Yaracuy"></option>
+  <option value="Zulia"></option>
+ </datalist>
+
+ <!--     Estados de Chile      --> 
+ <datalist id="estadosChil">
+  <option value="Arica-Parinacota"></option>
+  <option value="Antofagasta"></option>
+  <option value="Atacama"></option>
+  <option value="Coquimbo"></option>
+  <option value="Valparaiso"></option>
+  <option value="O'Higgins"></option>
+  <option value="Maule"></option>
+  <option value="Biobío"></option>
+  <option value="La Araucanía"></option>
+  <option value="Los Ríos"></option>
+  <option value="Los Lagos "></option>
+  <option value="Aysén del General Carlos Ibáñez del Campo"></option>
+  <option value="Magallanes y la Antártica Chilena"></option>
+  <option value="Tarapaca"></option>
+  <option value="Metropolitana"></option>
+  <option value="Ñuble"></option>
+ </datalist>
+
+ <!--     Estados de Colombia      --> 
+ <datalist id="estadosColo">
+  <option value="Amazonas"></option>
+  <option value="Antioquia"></option>
+  <option value="Arauca"></option>
+  <option value="Atlántico"></option>
+  <option value="Bolívar"></option>
+  <option value="Boyacá"></option>
+  <option value="Caldas"></option>
+  <option value="Caquetá"></option>
+  <option value="Casanare"></option>
+  <option value="Cauca"></option>
+  <option value="Cesar"></option>
+  <option value="Chocó"></option>
+  <option value="Córdoba"></option>
+  <option value="Cundinamarca"></option>
+  <option value="Guainía"></option>
+  <option value="Guaviare"></option>
+  <option value="Huila"></option>
+  <option value="La Guajira"></option>
+  <option value="Magdalena"></option>
+  <option value="Meta"></option>
+  <option value="Nariño"></option>
+  <option value="Norte de Santander"></option>
+  <option value="Putumayo"></option>
+  <option value="Quindío"></option>
+  <option value="Risaralda"></option>
+  <option value="San Andrés y Providencia"></option>
+  <option value="Santander"></option>
+  <option value="Sucre"></option>
+  <option value="Tolima"></option>
+  <option value="Valle del Cauca"></option>
+  <option value="Vaupés"></option>
+  <option value="Vichada"></option>
+ </datalist>

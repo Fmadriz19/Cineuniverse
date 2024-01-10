@@ -17,6 +17,9 @@ html, body {
     overflow: hidden;
 }
 
+.form-body{
+    background-color: #363753;
+}
 
 .form-holder {
       display: flex;
@@ -77,13 +80,6 @@ html, body {
     margin-bottom: 30px;
 }
 
-
-.form-content label, .was-validated .form-check-input:invalid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label{
-    color: #fff;
-}
-
-
-
 .form-content textarea {
     position: static !important;
     width: 100%;
@@ -126,3 +122,39 @@ html, body {
 .form-items h3, .form-items p{
     color: #152733;
 }
+
+/*      animacion      */
+.loader {
+    display: block;
+    width: 14px;
+    height: 19px;
+    position: relative;
+    margin-right: 5px;
+  }
+  
+  .loader:before , .loader:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #FFF;
+    transform: translate(-50% , -100%)  scale(0);
+    animation: push_401 2s infinite linear;
+  }
+  
+  .loader:after {
+    animation-delay: 1s;
+  }
+  
+  @keyframes push_401 {
+    0% , 50% {
+      transform: translate(-50% , 0%)  scale(1)
+    }
+  
+    100% {
+      transform: translate(-50%, -100%) scale(0)
+    }
+  }
