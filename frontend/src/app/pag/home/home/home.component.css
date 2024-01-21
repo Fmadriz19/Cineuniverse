@@ -1,0 +1,126 @@
+
+/*  Carrousel    */
+.container-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+    transform-style: preserve-3d;
+    
+  }
+  
+  .box{
+    position: relative;
+    width: 120px;
+    height: 178px;
+    transform-style: preserve-3d;
+    transition: 1.5s;
+    transform: perspective(1000px) rotateY(0deg);
+    left: 500px;
+  }
+  
+  .box span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--i) * 24deg)) translateZ(300px);
+    -webkit-box-reflect: below 0px linear-gradient(transparent, #0001);
+  }
+  
+  .box span img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+  }
+  
+  .box span img:hover{
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 15px #fff;
+    box-shadow: 0 0 15px #fff;
+  }
+  
+  .btns{
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    gap: 30px;
+    left: 615px;
+  }
+
+/*  Fondos de los Modales*/
+
+input[type="color"] {
+    border: none;
+    pointer-events: none; /* Deshabilitar la interacción con el input */
+  }
+  
+  /*  Monja   */  
+  .accordion-item .accordion-header .accordion-body{
+    background: #F2F2F2;
+  }
+  
+  .accordion{
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0D0D0D;
+  }
+  
+  .sombra{
+    margin-top: 10px;
+  }
+  
+  /*  Exorcismo del Papa   */
+  #Exorcismo .modal-content {
+    background: 
+      linear-gradient(to right, #33250A, #8C7853, #594623), /* Primer degradado */
+      linear-gradient(to bottom, #F2E2C4, #BFB197); /* Segundo degradado */
+  }
+  
+  #Exorcismo .accordion-item .accordion-header .accordion-body{
+    background: #F2E2C4;
+  }
+  
+  #Exorcismo .accordion{
+    border-radius: 10px;
+    box-shadow: 0 0 10px #33250A;
+  }
+  
+  
+  
+  /*  Animacion de Botones  */
+  
+  /*  No disponible   */
+  .btn-comprar:hover {
+    animation: shake 0.2s linear 1;
+  }
+  
+  .btn-comprar:hover::before {
+    translate: 0 0;
+  }
+  
+  @keyframes shake {
+    0% {
+      rotate: 0deg;
+    }
+  
+    33% {
+      rotate: 10deg;
+    }
+  
+    66% {
+      rotate: -10deg;
+    }
+  
+    100% {
+      rotate: 10deg;
+    }
+  }
+  

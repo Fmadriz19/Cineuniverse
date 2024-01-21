@@ -3,15 +3,20 @@
 }
 
 /*  Porcentaje   */
+.card{
+  background: rgb(236, 236, 236);
+}
+
 .container{
     position: relative;
     display: flex;
     gap: 30px;
+    
   }
   
   .container .box{
     position: relative;
-    padding: 40px 0;
+    padding: 30px 0;
     width: 290px;
     background: #222;
     display: flex;
@@ -19,12 +24,13 @@
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   }
   
   .container .box .circle{
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     background: conic-gradient(from 0deg, var(--clr) 0%, var(--clr) 0% var(--i), #333 var(--i), #333 100%);
     border-radius: 50%;
     display: flex;
@@ -35,7 +41,7 @@
   .container .box .circle::before{
     content: '';
     position: absolute;
-    inset: 10px;
+    inset: 5px;
     background: #25252b;
     border-radius: 50%;
   }
@@ -43,7 +49,7 @@
   .container .box h2{
     position: relative;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 1.2em;
     color: #fff;
     font-weight: 600;
   }
@@ -57,6 +63,44 @@
     color: #fff;
     text-transform: uppercase;
     margin-top: 20px;
-    font-weight: 500;
+    font-weight: 400;
     left: 0.1em;
   }
+
+  /*  imagen  */
+
+  .card-body-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    height: 100%; /* Asegura que el card-body ocupe todo el espacio disponible */
+  }
+
+.image-container-2 {
+  max-width: 180px; /* Establece el ancho máximo */
+  max-height: 280px; /* Establece la altura máxima */
+  border: 1px solid #ccc; /* Añade un borde para visualización */
+  display: flex; /* Utiliza flexbox para alinear la imagen */
+  justify-content: center; /* Centra horizontalmente la imagen */
+  align-items: center; /* Centra verticalmente la imagen */
+  text-align: center; /* Centra la imagen dentro de su contenedor */
+  overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el tamaño del contenedor */
+  margin: 10px 0;
+}
+
+.image-container-2 img {
+  width: auto; /* Permite que el ancho se ajuste automáticamente */
+  height: auto; /* Permite que la altura se ajuste automáticamente */
+  max-width: 100%; /* Establece el ancho máximo para la imagen */
+  max-height: 100%; /* Establece la altura máxima para la imagen */
+}
+
+.card-2 {
+  width: 350px;
+  height: 260px;
+  border-radius: 5px;
+  margin-bottom: 19px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}

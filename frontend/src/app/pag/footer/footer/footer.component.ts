@@ -1,90 +1,50 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-  
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent implements OnInit {
-  
-  /*------------------------------------------
-  --------------------------------------------
-  Declare Form
-  --------------------------------------------
-  --------------------------------------------*/
-  myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
-  });
-  selectedImageUrl: string | undefined;
 
+  admin!: any;
+  userID!: any;
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.getUser();
     
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
-  constructor() { }
+  }
 
-  ngOnInit(): void {
+  
+  getUser(){
+
+    let userData = localStorage.getItem('userData');
+
+    // Verificar si se encontró un valor en el localStorage
+    if (userData) {
+      // Convertir el valor de cadena a objeto JSON
+      let parsedUserData = JSON.parse(userData);
+      // Utilizar el valor obtenido del localStorage
+      this.userID = parsedUserData.id;
       
-  }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  get f(){
-    return this.myForm.controls;
-  }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  onFileChange(event:any) {
-    
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.myForm.patchValue({
-        fileSource: file
-      });
-
-      // Obtiene el archivo de imagen del input
-      this.selectedImageUrl = URL.createObjectURL(file);
+    } else {
+      // No se encontró ningún valor en el localStorage
+      console.log('No se encontró ningún dato en el localStorage');
     }
-  } 
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  submit(){
-    const formData = new FormData();
-  
-    const fileSourceValue = this.myForm.get('fileSource')?.value;
-  
-    if (fileSourceValue !== null && fileSourceValue !== undefined) {
-        formData.append('file', fileSourceValue);
-    }
+  }
 
-    console.log(fileSourceValue);
-       
-    /* this.http.post('http://localhost:8001/upload.php', formData)
-      .subscribe(res => {
-        console.log(res);
-        alert('Uploaded Successfully.');
-      }) */
-  } 
-
+  getUpdate(){
+    this.http.get(`http://127.0.0.1:8000/api/admin/${this.userID}`).subscribe((data: any) => {
+      this.admin = data;
+    });
+  }
+  
 }

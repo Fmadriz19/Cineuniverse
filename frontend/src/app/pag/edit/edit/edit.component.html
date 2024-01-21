@@ -120,6 +120,27 @@
   
       </div>
       
+      <div class="row mb-3">
+        
+        <div class="col">
+          
+          <div class="form-floating">
+            <input type="file" class="form-control" id="floatingInput" [(ngModel)]="admin.imagen" name="imagen" placeholder="" (change)="onFileChange($event)">
+            <label for="floatingPassword">imagen</label>
+          </div>
+
+        </div>
+        
+        <div class="col">
+  
+          <div class="image-container" *ngIf="selectedImageUrl">
+            <img [src]="selectedImageUrl" alt="Selected Image">
+          </div>
+
+        </div>
+  
+      </div>
+      
       <button type="submit" (click)="actualizar()" class="btn btn-primary">Guardar Cambios</button>
   </form>
   </div>

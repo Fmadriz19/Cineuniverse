@@ -22,6 +22,8 @@ export class PerfilComponent {
   password: string='';
   valor = 0
   porcentaje = 0;
+  ImageUrl: string | undefined;
+
 
   constructor(private http: HttpClient, private router: Router) { 
     const userData = localStorage.getItem('userData');
@@ -69,12 +71,26 @@ export class PerfilComponent {
       if (this.admin[key]) {
         count += 1;
       }
+
+      this.getImg();
     });
 
     this.valor += count; // Update the valor variable with the count of elements with values
     this.completeDate();
 
     });
+  }
+
+  getImg(){
+    if (this.admin && this.admin.imagen) {
+      let file = this.admin.imagen;
+      console.log(file);
+      // Obtiene el archivo de imagen del input
+      this.ImageUrl = file;
+    } else {
+      console.log('La propiedad imagen no está disponible en el objeto admin.');
+      this.ImageUrl = 'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png'
+    }
   }
 
   //    funcion redireccionar para Editar los datos del cliente
@@ -92,10 +108,17 @@ export class PerfilComponent {
     });
   }
 
+  //    Funcion de eliminar la imagen del cliente
+
+  getborrarImg(){
+    
+  }
+
   //    Calcular el porcentaje de los datos completos del cliente
   completeDate(){
     this.valor -= 5;
-    this.porcentaje = (this.valor / 10) * 100;
+    const resultado = ((this.valor / 11) * 100).toFixed(2);
+    this.porcentaje = parseFloat(resultado);
 
     const box = document.querySelector('.box') as HTMLElement;
 
@@ -110,4 +133,5 @@ export class PerfilComponent {
       h2Element.textContent = this.porcentaje + '%';
     }
   }
+
 }

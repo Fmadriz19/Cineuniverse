@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 
 class SalasController extends Controller
 {
+        /* ------ Mostrar todo ------ */
+
     public function index()
     {
         $salas = Sala::all();
         return response()->json($salas);
     }
+
+        /* ------ Crear ------ */
 
     public function store(Request $request)
     {
@@ -49,6 +53,7 @@ class SalasController extends Controller
 
     }
 
+        /* ------ Actualizar ------ */
 
     public function update(Request $request, $id)
     {
@@ -57,11 +62,15 @@ class SalasController extends Controller
         return response()->json('Datos de la sala actualizados!');
     }
 
+        /* ------ Buscar Sala ------ */
+
     public function show($id)
     {
         $salas = Sala::find($id);
         return response()->json($salas);
     }
+
+        /* ------ Eliminar ------ */
 
     public function destroy($id)
     {

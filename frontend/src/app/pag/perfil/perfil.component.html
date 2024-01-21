@@ -74,7 +74,25 @@
 
         </div>
         
-        <div class="col-sm-3 mb-3 mb-sm-0">
+        <div class="col-sm-3 ">
+
+          <div class="col-sm-3">
+
+            <div class="card-2">
+              <div class="card-body-2 ">
+
+                <div class="image-container-2" *ngIf="ImageUrl">
+                  <img [src]="ImageUrl" alt="Selected Image">
+                </div>
+              
+                <div class="card-body">
+                  <button (click)="getborrarImg()" type="button" class="btn btn-danger ms-1">Eliminar Foto</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
             <div class="card">
               <div class="card-body">
                 <div class="container">
@@ -87,6 +105,7 @@
                 </div>
               </div>
             </div>
+
           </div>
 
     </div>

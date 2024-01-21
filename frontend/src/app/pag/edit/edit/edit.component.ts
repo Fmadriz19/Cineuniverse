@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage'
 
 
 @Component({
@@ -33,10 +34,15 @@ export class EditComponent {
   userInvalid = false;
   codigoPais = 0;
 
+  imgRef: string | undefined;
+  imgFile: File | null = null;
+  selectedImageUrl: string | undefined;
+  apiImagen: string;
+
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
 
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private storage: Storage) { 
     const userData = localStorage.getItem('userData');
 
     if (userData) {
@@ -73,6 +79,8 @@ export class EditComponent {
 
   }
 
+  //    Extrae Datos del Usuario
+
   getUpdate(){
     this.http.get(`http://127.0.0.1:8000/api/admin/${this.userID}`).subscribe((data: any) => {
       this.admin = data;
@@ -82,14 +90,54 @@ export class EditComponent {
     
   }
 
+  //    Funciones para actualizar
+
   actualizar(){
+    const file = this.imgFile;
+    
+    if (!file) {
+      // Mostrar mensaje de error si no se ha seleccionado imagen
+      return;
+    }
+
+      const checkAndUpload = async (fileName: string, index: number): Promise<void> => {
+        const fileRef = ref(this.storage, `usuario/${fileName}`);
+        const fileExists = await getDownloadURL(fileRef)
+          .then(() => true)
+          .catch(() => false);
+      
+        if (fileExists) {
+          // Si el archivo con el nombre actual ya existe, sumarle uno al nombre
+          let [name, extension] = fileName.split('.');
+          let newName = `${name}_${index}.${extension}`;
+          return checkAndUpload(newName, index + 1); // Llamada recursiva con el nuevo nombre
+        } else {
+          // Subir el archivo con el nombre verificado
+          return uploadBytes(fileRef, file)
+            .then(async response => {
+              console.log(response);
+              const url = await getDownloadURL(fileRef);
+              console.log(url);
+              this.apiImagen = url;
+              this.subir();
+            })
+            .catch(error => console.error(error));
+        }
+      };
+
+      // Llamar a la función de verificación y subida con el nombre original del archivo
+      checkAndUpload(file.name, 1);
+      
+  }
+
+  subir(){
     let cell = this.codigoPais.toString() + this.admin.telefono.toString();
 
     var inputData ={
       nombre: this.admin.nombre,
       apellido: this.admin.apellido,
       cedula: this.admin.cedula,
-      imagen: this.admin.imagen,
+      imagen: this.apiImagen,
       correo: this.admin.correo,
       direccion: this.admin.direccion,
       pais: this.admin.pais,
@@ -102,7 +150,7 @@ export class EditComponent {
 
     console.log(inputData);
 
-    /* this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
+    this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
       next: (res: any) => {
         console.log(res)
         alert('Usuario Actualizado')
@@ -128,7 +176,7 @@ export class EditComponent {
           this.userInvalid = true;
         }
       }
-    }); */
+    });
   }
   
   //  Funcion para definir el numero telefonico del pais
@@ -147,4 +195,18 @@ export class EditComponent {
       }
     }
   }
+
+  //    Visualizar imagen a subir
+
+  onFileChange(event:any) {
+    
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.imgFile = event.target.files[0]; // Storage Firebase
+
+      // Obtiene el archivo de imagen del input
+      this.selectedImageUrl = URL.createObjectURL(file);
+
+    }
+  } 
 }

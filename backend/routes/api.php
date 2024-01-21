@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SalasController;
+use App\Http\Controllers\PeliculaController;
 
 
 /*
@@ -30,6 +31,13 @@ Route::get('/sala/{id}', [App\Http\Controllers\SalasController::class, 'show']);
 Route::post('/sala', [App\Http\Controllers\SalasController::class, 'store']);
 Route::put('/sala/{id}', [App\Http\Controllers\SalasController::class, 'update']);
 Route::delete('/sala/{id}',[App\Http\Controllers\SalasController::class, 'destroy']);
+
+/* ---- Peliculas ---- */
+Route::get('/peliculas', [App\Http\Controllers\PeliculaController::class, 'index']);
+Route::get('/pelicula/{id}', [App\Http\Controllers\PeliculaController::class, 'show']);
+Route::post('/pelicula', [App\Http\Controllers\PeliculaController::class, 'store']);
+Route::put('/pelicula/{id}', [App\Http\Controllers\PeliculaController::class, 'update']);
+Route::delete('/pelicula/{id}',[App\Http\Controllers\PeliculaController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

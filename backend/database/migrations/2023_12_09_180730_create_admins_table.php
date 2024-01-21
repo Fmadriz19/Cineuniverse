@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 15);
             $table->string('apellido', 15)->nullable();
             $table->string('cedula', 13)->nullable()->unique();
-            $table->binary('imagen')->nullable(); // formato para agregar archivos multimedias
+            $table->string('imagen')->nullable(); // formato para agregar archivos multimedias
             $table->string('correo')->nullable()->unique();
             $table->string('direccion')->nullable();
             $table->string('pais')->nullable();

@@ -7,7 +7,7 @@ import { SalasListComponent } from './pag/salas/salas-list/salas-list.component'
 import { SalasCreateComponent } from './pag/salas/salas-create/salas-create.component';
 import { SalasEditComponent } from './pag/salas/salas-edit/salas-edit.component';
 import { PerfilComponent } from './pag/perfil/perfil.component';
-import { FooterComponent } from './pag/footer/footer/footer.component';
+import { PeliculaEditComponent } from './pag/edit/pelicula-edit/pelicula-edit.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, title: 'Home' },
@@ -18,5 +18,5 @@ export const routes: Routes = [
     { path: 'salas/create', component: SalasCreateComponent, title: 'Crear Nueva Sala' },
     { path: 'salas/edit/:id', component: SalasEditComponent, title: 'Edicion de Salas' },
     { path: 'perfil', component: PerfilComponent, title: 'Perfil' },
-    { path: 'pruebas', component: FooterComponent, title: 'pruebas' }
+    { path: 'edit/pelicula', component: PeliculaEditComponent, title: 'Edición de Pelicula' }
   ];

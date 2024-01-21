@@ -24,16 +24,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterComponent } from './pag/footer/footer/footer.component';
 import { AsyncPipe } from '@angular/common';
+import { PeliculaEditComponent } from './pag/edit/pelicula-edit/pelicula-edit.component';
 
-/* import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; */
 
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [ NgModule, AdminServiceService, SalaEntidad, DatePipe],
   imports: [CommonModule, RouterOutlet, RegistreComponent, LoginComponent, EditComponent, HomeComponent, HttpClientModule, NavbarComponent,
-    SalasListComponent, SalasCreateComponent, SalasEditComponent, PerfilComponent, ReactiveFormsModule,
+    SalasListComponent, SalasCreateComponent, SalasEditComponent, PerfilComponent, ReactiveFormsModule, PeliculaEditComponent,
     MatFormFieldModule, MatInputModule, MatAutocompleteModule, FooterComponent, FormsModule, AsyncPipe, MatNativeDateModule,
     MatButtonToggleModule],
   templateUrl: './app.component.html',
