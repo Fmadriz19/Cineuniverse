@@ -10,14 +10,18 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage'
 import { ImageModule } from 'primeng/image';
 import { HttpClient } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pelicula-edit',
   standalone: true,
   imports: [CardModule, InputTextModule, FormsModule, ButtonModule, InputTextareaModule, CalendarModule, ColorPickerModule, CommonModule,
-            ImageModule],
+            ImageModule, ToastModule],
   templateUrl: './pelicula-edit.component.html',
-  styleUrl: './pelicula-edit.component.css'
+  styleUrl: './pelicula-edit.component.css',
+  providers: [MessageService]
 })
 export class PeliculaEditComponent implements OnInit {
   
@@ -58,24 +62,33 @@ export class PeliculaEditComponent implements OnInit {
   //  Boton de guardar
   isImageWithinDimensions: boolean = true; // Initialize as true by default
 
-  constructor(private storage: Storage, private http: HttpClient){
+  constructor(private storage: Storage, private http: HttpClient, private messageService: MessageService, private router: Router){
 
   }
 
   ngOnInit() {
+     // Inicializar los valores de los checkboxes
+    this.isCheckbox1Checked = true;
+    this.checkbox1Value = 'on';
+    this.isCheckbox2Checked = true;
+    this.checkbox2Value = 'on';
 
   }
 
-
   onCheckboxChange() {
-    this.isCheckbox1Checked = this.checkbox.nativeElement.checked;
-    this.checkbox1Value = this.isCheckbox1Checked ? 'on' : 'off';
+    this.checkbox.nativeElement.addEventListener('blur', () => {
+      this.isCheckbox1Checked = this.checkbox.nativeElement.checked;
+      this.checkbox1Value = this.isCheckbox1Checked ? 'on' : 'off';
+    });
   }
   
   onCheckboxChange_2() {
-    this.isCheckbox2Checked = this.checkbox_2.nativeElement.checked;
-    this.checkbox2Value = this.isCheckbox2Checked ? 'on' : 'off';
+    this.checkbox_2.nativeElement.addEventListener('blur', () => {
+      this.isCheckbox2Checked = this.checkbox_2.nativeElement.checked;
+      this.checkbox2Value = this.isCheckbox2Checked ? 'on' : 'off';
+    });
   }
+  
 
   actualizar(){
     const file = this.imgFile;
@@ -117,65 +130,33 @@ export class PeliculaEditComponent implements OnInit {
 
   subir(){
 
-    var inputData ={
-      nombre: this.peliNombre,
-      genero: this.peliGenero,
-      imagen: this.peliImagen,
-      descripcion: this.peliDescripcion,
-      estreno: this.peliEstreno,
-      colores: this.peliColores
+    if (!this.peliNombre || !this.peliImagen || !this.peliGenero || !this.peliEstreno || !this.peliDescripcion || !this.peliColores){
+      this.camposVacios();
+    } else {
+      var inputData ={
+        nombre: this.peliNombre,
+        genero: this.peliGenero,
+        imagen: this.peliImagen,
+        descripcion: this.peliDescripcion,
+        estreno: this.peliEstreno,
+        colores: this.peliColores
+      }
+  
+  
+      console.log(inputData);
+  
+      this.http.post(`http://127.0.0.1:8000/api/pelicula`, inputData).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          console.log('registrado con exito');
+          this.exito();
+          this.ejecutarAccion();
+        },
+        error: (err: any) => {
+          console.log(err.error.message);
+        }
+      });
     }
-
-
-    console.log(inputData);
-
-    /* this.http.post(`http://127.0.0.1:8000/api/pelicula`, inputData).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        console.log('registrado con exito');
-
-
-
-        this.peliNombre = '';
-        this.peliImagen = '';
-        this.peliGenero = '';
-        this.peliEstreno = '';
-        this.peliDescripcion = '';
-        this.peliColores = '';
-        this.selectedImageUrl = '';
-      },
-      error: (err: any) => {
-        console.log(err.error.message);
-      }
-    }); */
-
-  /*  this.http.put(`http://127.0.0.1:8000/api/admin/${this.userID}`, inputData).subscribe({
-      next: (res: any) => {
-        console.log(res)
-        alert('Usuario Actualizado')
-        this.router.navigateByUrl('perfil');
-      },
-      error: (err: any) => {
-        console.log(err.error.message);
-        if (err.error.message == 'El correo no puede estar vacio') {
-          this.validEmail = true;
-        } else if (err.error.message === 'El correo debe ser de Gmail') {
-          this.validEmail = false;
-          this.invalidEmail = true;
-        
-        } else if (err.error.message === 'El correo ya está registrado') {
-          this.validEmail = false;
-          this.invalidEmail = false;
-          this.regisEmail = true;
-        }
-         else if (err.error.message === 'El usuario ya esta registrado') {
-          this.validEmail = false;
-          this.invalidEmail = false;
-          this.regisEmail = false;
-          this.userInvalid = true;
-        }
-      }
-    }); */
   }
   
   //    Visualizar imagen a subir
@@ -200,39 +181,36 @@ export class PeliculaEditComponent implements OnInit {
 
             this.isImageWithinDimensions = true; // Habilitar el botón de guardar
           } else {
-            // Image exceeds the maximum dimensions
+            this.errorDimension();
             this.isImageWithinDimensions = false; // Deshabilitar el botón de guardar
-            this.imgFile = null; // Reiniciar el archivo seleccionado
             event.target.value = ''; // Limpiar el valor del input file para eliminar el nombre del archivo
             console.log('La imagen seleccionada no cumple con las dimensiones de 120x180');
           }
         };
       } else {
         // El formato del archivo no es admitido
-        console.log('El formato del archivo no es compatible. Por favor, selecciona un archivo .png, .jpeg o .jpg');
-        this.imgFile = null; // Reiniciar el archivo seleccionado
+        this.show();
         this.selectedImageUrl = ''; // Limpiar la URL de la imagen
         this.isImageWithinDimensions = false; // Deshabilitar el botón de guardar
         event.target.value = ''; // Limpiar el valor del input file para eliminar el nombre del archivo
       }
     }
   }
-  
-  
 
   //  Concatenar Colores
   concatenarColors() {
-    this.colorTitulo = this.checkbox1Value === 'on' ? '#fffff' : '#000000';
-    this.colorAcordion = this.checkbox2Value === 'on' ? '#fffff' : '#000000';
+    this.colorTitulo = this.checkbox1Value === 'on' ? '#ffffff' : '#000000';
+    this.colorAcordion = this.checkbox2Value === 'on' ? '#ffffff' : '#000000';
 
-    /* if (!this.color_1 || !this.color_2 || !this.color_3 || !this.color_4 || !this.color_5) {
+    if (!this.color_1 || !this.color_2 || !this.color_3 || !this.color_4 || !this.color_5) {
       console.log('input indefinido');
-    } else { */
+      this.inputColors();
+    } else {
       let value = `${this.color_1} - ${this.color_2} - ${this.color_3} - ${this.color_4} - ${this.color_5} - ${this.colorTitulo} - ${this.colorAcordion}`;
       this.peliColores = value;
       console.log(value);
       this.subir();
-    
+    }
   }
   
   //  Validar que no puedas elegir la fecha de estreno un dia anterior al dia actual
@@ -250,5 +228,40 @@ export class PeliculaEditComponent implements OnInit {
     }
 
     return `${year}-${month}-${day}`;
+  }
+
+  //  Tiempo muerto
+  ejecutarAccion() {
+    setTimeout(() => {
+      this.router.navigateByUrl(``);
+      this.peliNombre = '';
+      this.peliImagen = '';
+      this.peliGenero = '';
+      this.peliEstreno = '';
+      this.peliDescripcion = '';
+      this.peliColores = '';
+      this.selectedImageUrl = '';
+    }, 2000); // 2000 milisegundos = 2 segundos
+  }
+
+  //  mensajes de advertencia
+  show() {
+    this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error de formato de imagen', detail: 'Solo se permite subir archivos .png . jgp . jpeg' });
+  }
+
+  inputColors(){
+    this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error en los inputs colors', detail: 'Los valores de los inputs estan indefinidos. Debes agregarle valores para continuar' });
+  }
+
+  errorDimension(){
+    this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error de imagen', detail: 'Solo se permiten imagenes igual o inferiores a 120x180.'});
+  }
+
+  camposVacios(){
+    this.messageService.add({ key: 'tc', severity: 'warn', summary: 'Campos vacios', detail: 'No puedes dejar ningun campo vacio.'});
+  }
+
+  exito(){
+    this.messageService.add({ key: 'tc', severity: 'success', summary: 'Registro exitoso', detail: 'Se ha resgistrado la pelicula con exito.'});
   }
 }

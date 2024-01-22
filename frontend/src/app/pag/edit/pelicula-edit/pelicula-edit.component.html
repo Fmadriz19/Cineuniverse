@@ -2,6 +2,8 @@
 <div class="card flex justify-content-center" style="align-items: center;">
     <p-card header="Edición pelicula" class="center mt-3 mb-3" [style]="{ width: '625px' }">
         
+        <p-toast position="top-center" key="tc"></p-toast>
+
         <div class="row mb-4">
         
             <div class="col">
@@ -60,7 +62,7 @@
 
             </div>
 
-            <div class="col mt-4">      
+            <div class="col mt-4">
 
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
@@ -160,7 +162,7 @@
             </div>
 
             <div class="col-auto">
-                <p-button (click)="concatenarColors() " [disabled]="!isImageWithinDimensions" label="Guardar" [text]="true" [raised]="true" severity="success"></p-button>
+                <p-button (click)="actualizar() " [disabled]="!isImageWithinDimensions" label="Guardar" [text]="true" [raised]="true" severity="success"></p-button>
             </div>
 
         </div>

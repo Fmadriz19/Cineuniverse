@@ -27,15 +27,15 @@
             <span style="--i:1;"> <img src="assets/Posters de Peliculas/Accion/contrarreloj.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:2;"> <img src="assets/Posters de Peliculas/Accion/ghosted.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:3;"> <img src="assets/Posters de Peliculas/Accion/el precio del mañana.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:4;"> <img src="assets/Posters de Peliculas/Animadas/coco.png" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:5;"> <img src="assets/Posters de Peliculas/Animadas/elementos.jpeg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:4;" (click)="poster_6()"> <img [src]="peliImagen_6" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:5;" (click)="poster_5()"> <img [src]="peliImagen_5" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:6;" (click)="poster_4()"> <img [src]="peliImagen_4" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:7;"> <img src="assets/Posters de Peliculas/Comedia/gemelas.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:8;"> <img src="assets/Posters de Peliculas/Comedia/Luna de miel en familia.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:9;"> <img src="assets/Posters de Peliculas/Comedia/son como niños 2.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:10;"> <img src="assets/Posters de Peliculas/Romance/la otra zoey.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:11;"> <img src="assets/Posters de Peliculas/Romance/mujer bonita.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:12;"> <img src="assets/Posters de Peliculas/Romance/Sin_reservas.jpg"data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:7;" (click)="poster_12()"> <img [src]="peliImagen_12" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:8;" (click)="poster_11()"> <img [src]="peliImagen_11" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:9;" (click)="poster_10()"> <img [src]="peliImagen_10" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:10;" (click)="poster_9()"> <img [src]="peliImagen_9" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:11;" (click)="poster_8()"> <img [src]="peliImagen_8" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:12;" (click)="poster_7()"> <img [src]="peliImagen_7" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:13;" (click)="poster_3()"> <img [src]="peliImagen_3" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:14;" (click)="poster_2()"> <img [src]="peliImagen_2" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:15;" (click)="poster_1()"> <img [src]="peliImagen_1" data-bs-toggle="modal" data-bs-target="#Modal"></span>
@@ -55,7 +55,7 @@
 <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" 
-            style="background: linear-gradient(to bottom, #372673, #221e33, #c8c185), linear-gradient(to bottom, #F2F2F2, #0D0D0D);">
+            style="background: linear-gradient(to bottom, #260101, #661c1c, #a65656), linear-gradient(to bottom, #F2F2F2, #0D0D0D);">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #000000">{{titulo}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

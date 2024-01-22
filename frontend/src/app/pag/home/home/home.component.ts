@@ -145,20 +145,23 @@ export class HomeComponent {
         this.peliImagen_2 = res[1].imagen;
         this.peliImagen_3 = res[2].imagen;
         this.peliImagen_4 = res[3].imagen;
+        this.peliImagen_5 = res[4].imagen;
+        this.peliImagen_6 = res[5].imagen;
+        this.peliImagen_7 = res[6].imagen;
+        this.peliImagen_8 = res[7].imagen;
+        this.peliImagen_9 = res[8].imagen;
+        this.peliImagen_10 = res[9].imagen;
+        this.peliImagen_11 = res[10].imagen;
+        this.peliImagen_12 = res[11].imagen;
+        this.peliImagen_13 = res[12].imagen;
+        this.peliImagen_14 = res[13].imagen;
+        this.peliImagen_15 = res[14].imagen;
 
-        this.comprobar();
       }, error: (err: any) => {
         console.log(err.error.message);
       }
 
     });
-  }
-
-  comprobar(){
-    console.log(this.peliPoster_1);
-    console.log(this.peliPoster_2);
-    console.log(this.peliPoster_3);
-    console.log(this.peliPoster_4);
   }
 
   nextFun(){
@@ -184,6 +187,680 @@ export class HomeComponent {
 
  
   //  Verificar que contenido tendra el modal
+
+  poster_12(){
+    this.titulo = this.peliPoster_12.nombre;
+    this.descripcion = this.peliPoster_12.descripcion;
+    this.genero = this.peliPoster_12.genero;
+    this.estreno = this.peliPoster_12.estreno;
+    this.imagen = this.peliPoster_12.imagen;
+
+    const colors = this.peliPoster_12.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_11(){
+    this.titulo = this.peliPoster_11.nombre;
+    this.descripcion = this.peliPoster_11.descripcion;
+    this.genero = this.peliPoster_11.genero;
+    this.estreno = this.peliPoster_11.estreno;
+    this.imagen = this.peliPoster_11.imagen;
+
+    const colors = this.peliPoster_11.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_10(){
+    this.titulo = this.peliPoster_10.nombre;
+    this.descripcion = this.peliPoster_10.descripcion;
+    this.genero = this.peliPoster_10.genero;
+    this.estreno = this.peliPoster_10.estreno;
+    this.imagen = this.peliPoster_10.imagen;
+
+    const colors = this.peliPoster_10.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_9(){
+    this.titulo = this.peliPoster_9.nombre;
+    this.descripcion = this.peliPoster_9.descripcion;
+    this.genero = this.peliPoster_9.genero;
+    this.estreno = this.peliPoster_9.estreno;
+    this.imagen = this.peliPoster_9.imagen;
+
+    const colors = this.peliPoster_9.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_8(){
+    this.titulo = this.peliPoster_8.nombre;
+    this.descripcion = this.peliPoster_8.descripcion;
+    this.genero = this.peliPoster_8.genero;
+    this.estreno = this.peliPoster_8.estreno;
+    this.imagen = this.peliPoster_8.imagen;
+
+    const colors = this.peliPoster_8.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_7(){
+    this.titulo = this.peliPoster_7.nombre;
+    this.descripcion = this.peliPoster_7.descripcion;
+    this.genero = this.peliPoster_7.genero;
+    this.estreno = this.peliPoster_7.estreno;
+    this.imagen = this.peliPoster_7.imagen;
+
+    const colors = this.peliPoster_7.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_6(){
+    this.titulo = this.peliPoster_6.nombre;
+    this.descripcion = this.peliPoster_6.descripcion;
+    this.genero = this.peliPoster_6.genero;
+    this.estreno = this.peliPoster_6.estreno;
+    this.imagen = this.peliPoster_6.imagen;
+
+    const colors = this.peliPoster_6.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_5(){
+    this.titulo = this.peliPoster_5.nombre;
+    this.descripcion = this.peliPoster_5.descripcion;
+    this.genero = this.peliPoster_5.genero;
+    this.estreno = this.peliPoster_5.estreno;
+    this.imagen = this.peliPoster_5.imagen;
+
+    const colors = this.peliPoster_5.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+  
   poster_4(){
     this.titulo = this.peliPoster_4.nombre;
     this.descripcion = this.peliPoster_4.descripcion;
@@ -205,12 +882,12 @@ export class HomeComponent {
     const color6 = coloresArray[5];
     const color7 = coloresArray[6];
 
-    console.log(color3);
 
+  
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    ;
+
 
     if(modalContent){
       modalContent.style.background = backgroundGradient;
@@ -297,7 +974,7 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    ;
+    
 
     if(modalContent){
       modalContent.style.background = backgroundGradient;
@@ -384,7 +1061,7 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    ;
+    
 
     if(modalContent){
       modalContent.style.background = backgroundGradient;
@@ -472,7 +1149,7 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    ;
+    
 
     if(modalContent){
       modalContent.style.background = backgroundGradient;
