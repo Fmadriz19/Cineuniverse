@@ -11,22 +11,27 @@ import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage
 import { ImageModule } from 'primeng/image';
 import { HttpClient } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-pelicula-edit',
   standalone: true,
   imports: [CardModule, InputTextModule, FormsModule, ButtonModule, InputTextareaModule, CalendarModule, ColorPickerModule, CommonModule,
-            ImageModule, ToastModule],
+            ImageModule, ToastModule, ConfirmDialogModule],
   templateUrl: './pelicula-edit.component.html',
   styleUrl: './pelicula-edit.component.css',
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class PeliculaEditComponent implements OnInit {
   
   @ViewChild('checkboxRef') checkbox: ElementRef;
   @ViewChild('checkboxRef_2') checkbox_2: ElementRef;
+
+  userID!: any;
+  tipoUser!: any;
+  admin!: any;
 
   peliNombre: string | undefined;
   peliGenero: string | undefined;
@@ -36,19 +41,21 @@ export class PeliculaEditComponent implements OnInit {
   peliColores: string | undefined;
 
   // Colores para el poster
-  color_1: string | undefined;
-  color_2: string | undefined;
-  color_3: string | undefined;
-  color_4: string | undefined;
-  color_5: string | undefined;
+  color_1: string;
+  color_2: string;
+  color_3: string;
+  color_4: string;
+  color_5: string;
 
   // Variables para el checkbox
   colorTitulo: string;
   colorAcordion: string;
  
+  isChecked1: boolean; // Asignar el valor inicial como falso
   isCheckbox1Checked: boolean;
   checkbox1Value: string;
   
+  isChecked2: boolean = false; // Asignar el valor inicial como falso
   isCheckbox2Checked: boolean;
   checkbox2Value: string;
 
@@ -62,17 +69,91 @@ export class PeliculaEditComponent implements OnInit {
   //  Boton de guardar
   isImageWithinDimensions: boolean = true; // Initialize as true by default
 
-  constructor(private storage: Storage, private http: HttpClient, private messageService: MessageService, private router: Router){
+  constructor(private storage: Storage, private http: HttpClient, private messageService: MessageService, private router: Router, private route: ActivatedRoute,
+    private confirmationService: ConfirmationService){
+      
+    const userData = localStorage.getItem('userData');
 
+    if (userData) {
+      console.log('El usuario está logueado');
+      let parsedUserData = JSON.parse(userData);
+      // Utilizar el valor obtenido del localStorage
+      let tipoUser = parsedUserData.tipoUser;
+      console.log(tipoUser);
+
+      if (tipoUser == 0) {
+        this.router.navigateByUrl('');
+      }
+
+    } else {
+      console.log('El usuario no está logueado');
+      this.router.navigateByUrl('');
+    }
+    this.userID = this.route.snapshot.paramMap.get('id');
+    this.getUpdate();
   }
 
   ngOnInit() {
-     // Inicializar los valores de los checkboxes
-    this.isCheckbox1Checked = true;
-    this.checkbox1Value = 'on';
-    this.isCheckbox2Checked = true;
-    this.checkbox2Value = 'on';
+  }
 
+  getUpdate(){
+    this.http.get(`http://127.0.0.1:8000/api/pelicula/${this.userID}`).subscribe((data: any) => {
+      this.admin = data;
+      console.log(this.admin);
+
+      const colors = data.colores;
+
+      // Dividir el string en un array utilizando el separador "-"
+      const coloresArray = colors.split(' - ');
+  
+      // Asignar cada valor a una variable diferente
+      this.color_1 = coloresArray[0];
+      this.color_2 = coloresArray[1];
+      this.color_3 = coloresArray[2];
+      this.color_4 = coloresArray[3];
+      this.color_5 = coloresArray[4];
+      // Inicializar los valores de los checkboxes
+
+      const color6 = coloresArray[5];
+      const color7 = coloresArray[6];
+
+      if(color6 === '#ffffff'){
+        this.isChecked1 = true;
+        this.isCheckbox1Checked = true;
+        this.checkbox1Value = 'on';
+      } else if (color6 === '#000000'){
+        this.isChecked1 = false;
+        this.isCheckbox1Checked = false;
+        this.checkbox1Value = 'off';
+      }
+
+      if(color7 === '#ffffff'){
+        this.isChecked2 = true;
+        this.isCheckbox2Checked = true;
+        this.checkbox2Value = 'on';
+      } else if (color7 === '#000000'){
+        this.isChecked2 = false;
+        this.isCheckbox2Checked = false;
+        this.checkbox2Value = 'off';
+      }
+
+    });
+  }
+
+  valorPredetermiado(){
+    const colors = this.admin.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    this.color_1 = coloresArray[0];
+    this.color_2 = coloresArray[1];
+    this.color_3 = coloresArray[2];
+    this.color_4 = coloresArray[3];
+    this.color_5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
   }
 
   onCheckboxChange() {
@@ -145,7 +226,7 @@ export class PeliculaEditComponent implements OnInit {
   
       console.log(inputData);
   
-      this.http.post(`http://127.0.0.1:8000/api/pelicula`, inputData).subscribe({
+      this.http.put(`http://127.0.0.1:8000/api/pelicula/${this.userID}`, inputData).subscribe({
         next: (res: any) => {
           console.log(res);
           console.log('registrado con exito');
@@ -263,5 +344,32 @@ export class PeliculaEditComponent implements OnInit {
 
   exito(){
     this.messageService.add({ key: 'tc', severity: 'success', summary: 'Registro exitoso', detail: 'Se ha resgistrado la pelicula con exito.'});
+  }
+
+  confirm1(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Estas seguro que deseas descartar los cambios?',
+      header: '¿Descartar cambios?',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"p-button-text p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+
+      accept: () => {
+        this.messageService.add({ severity: 'error', summary: 'Descartado', detail: 'Los cambios fueron descartados.' });
+          this.redireccionar();
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Continuar', detail: 'Puede seguir editando la pelicula.' });
+      }
+    });
+  }
+
+  redireccionar(){
+    setTimeout(() => {
+      this.router.navigateByUrl(``);
+    }, 2000); // 2000 milisegundos = 2 segundos
   }
 }

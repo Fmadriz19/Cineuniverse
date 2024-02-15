@@ -17,7 +17,10 @@ return new class extends Migration
             $table->integer('asiento');
             $table->string('inicio'); 
             $table->string('final'); 
-            $table->string('tipo', 25); 
+            $table->string('tipo', 25);
+            $table->string('disponible')->nullable();
+            $table->string('pelicula');
+            $table->string('comprados')->nullable();
             $table->timestamps();
         });
     }

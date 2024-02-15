@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
 import Tooltip from 'bootstrap/js/dist/tooltip';
 import { HttpClient } from '@angular/common/http';
 import { UndoIcon } from 'primeng/icons/undo';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [ButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -20,6 +20,9 @@ export class HomeComponent {
   degrees: number = 0;
 
   showModal = false;
+  
+  //  Variable id general
+  peli_Id: any;
 
   //  Variables del modal
   titulo: string = '';
@@ -182,11 +185,270 @@ export class HomeComponent {
 
   editPeli(){  
     // Redirigir a la nueva ruta
-    this.router.navigateByUrl('edit/pelicula');
+
+    this.router.navigateByUrl(`/edit/pelicula/${this.peli_Id}`);
   }
 
+  comprar(){
+    this.router.navigateByUrl(`/tickets/${this.peli_Id}`);
+  }
  
   //  Verificar que contenido tendra el modal
+
+  poster_15(){
+    this.titulo = this.peliPoster_15.nombre;
+    this.descripcion = this.peliPoster_15.descripcion;
+    this.genero = this.peliPoster_15.genero;
+    this.estreno = this.peliPoster_15.estreno;
+    this.imagen = this.peliPoster_15.imagen;
+    this.peli_Id = this.peliPoster_15.id;
+
+    const colors = this.peliPoster_15.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_14(){
+    this.titulo = this.peliPoster_14.nombre;
+    this.descripcion = this.peliPoster_14.descripcion;
+    this.genero = this.peliPoster_14.genero;
+    this.estreno = this.peliPoster_14.estreno;
+    this.imagen = this.peliPoster_14.imagen;
+    this.peli_Id = this.peliPoster_14.id;
+
+    const colors = this.peliPoster_14.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
+
+  poster_13(){
+    this.titulo = this.peliPoster_13.nombre;
+    this.descripcion = this.peliPoster_13.descripcion;
+    this.genero = this.peliPoster_13.genero;
+    this.estreno = this.peliPoster_13.estreno;
+    this.imagen = this.peliPoster_13.imagen;
+    this.peli_Id = this.peliPoster_13.id;
+
+    const colors = this.peliPoster_13.colores;
+
+    // Dividir el string en un array utilizando el separador "-"
+    const coloresArray = colors.split(' - ');
+
+    // Asignar cada valor a una variable diferente
+    const color1 = coloresArray[0];
+    const color2 = coloresArray[1];
+    const color3 = coloresArray[2];
+    const color4 = coloresArray[3];
+    const color5 = coloresArray[4];
+    const color6 = coloresArray[5];
+    const color7 = coloresArray[6];
+
+    //  Define el color de fondo del poster
+    const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
+    const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
+
+    if(modalContent){
+      modalContent.style.background = backgroundGradient;
+    }
+
+    //  Define el color de fondo del Acordion
+
+    //  Define los colores de la sombra
+    const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
+    const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
+  
+
+    if(sombra){
+      sombra.style.boxShadow = box_shadows;
+    }
+
+    //  Define los colores de los inputs de la paleta de colores
+
+    const colorInputs = document.querySelectorAll('.accordion-body input[type="color"]');
+
+    // Definir los valores para cada input
+    colorInputs[0].setAttribute('value', color1);
+    colorInputs[1].setAttribute('value', color2);
+    colorInputs[2].setAttribute('value', color3);
+    colorInputs[3].setAttribute('value', color4);
+    colorInputs[4].setAttribute('value', color5);
+
+    // Define el color de las letras del titulo
+
+    const letras = `${color6}`;
+    const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
+  
+    if(titulo){
+      titulo.style.color = letras;
+    }
+
+    // Define el color de las letras del acordion
+
+    const letrasAcor = `${color7}`;
+    const font = document.querySelector('#Modal .acordion-item') as HTMLElement;
+    const font2 = document.querySelector('#Modal .acordion-item2') as HTMLElement;
+    const font3 = document.querySelector('#Modal .acordion-item3') as HTMLElement;
+    const font4 = document.querySelector('#Modal .acordion-item4') as HTMLElement;
+    const buttom_font = document.querySelector('#Modal .buttom-acordion') as HTMLElement;
+    const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
+    const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
+    const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
+  
+    if(font){
+      font.style.color = letrasAcor;
+      font2.style.color = letrasAcor;
+      font3.style.color = letrasAcor;
+      font4.style.color = letrasAcor;
+      buttom_font.style.color = letrasAcor;
+      buttom_font2.style.color = letrasAcor;
+      buttom_font3.style.color = letrasAcor;
+      buttom_font4.style.color = letrasAcor;
+    }
+  }
 
   poster_12(){
     this.titulo = this.peliPoster_12.nombre;
@@ -194,6 +456,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_12.genero;
     this.estreno = this.peliPoster_12.estreno;
     this.imagen = this.peliPoster_12.imagen;
+    this.peli_Id = this.peliPoster_12.id;
 
     const colors = this.peliPoster_12.colores;
 
@@ -278,6 +541,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_11.genero;
     this.estreno = this.peliPoster_11.estreno;
     this.imagen = this.peliPoster_11.imagen;
+    this.peli_Id = this.peliPoster_11.id;
 
     const colors = this.peliPoster_11.colores;
 
@@ -362,6 +626,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_10.genero;
     this.estreno = this.peliPoster_10.estreno;
     this.imagen = this.peliPoster_10.imagen;
+    this.peli_Id = this.peliPoster_10.id;
 
     const colors = this.peliPoster_10.colores;
 
@@ -446,6 +711,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_9.genero;
     this.estreno = this.peliPoster_9.estreno;
     this.imagen = this.peliPoster_9.imagen;
+    this.peli_Id = this.peliPoster_9.id;
 
     const colors = this.peliPoster_9.colores;
 
@@ -530,6 +796,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_8.genero;
     this.estreno = this.peliPoster_8.estreno;
     this.imagen = this.peliPoster_8.imagen;
+    this.peli_Id = this.peliPoster_8.id;
 
     const colors = this.peliPoster_8.colores;
 
@@ -614,6 +881,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_7.genero;
     this.estreno = this.peliPoster_7.estreno;
     this.imagen = this.peliPoster_7.imagen;
+    this.peli_Id = this.peliPoster_7.id;
 
     const colors = this.peliPoster_7.colores;
 
@@ -698,6 +966,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_6.genero;
     this.estreno = this.peliPoster_6.estreno;
     this.imagen = this.peliPoster_6.imagen;
+    this.peli_Id = this.peliPoster_6.id;
 
     const colors = this.peliPoster_6.colores;
 
@@ -782,6 +1051,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_5.genero;
     this.estreno = this.peliPoster_5.estreno;
     this.imagen = this.peliPoster_5.imagen;
+    this.peli_Id = this.peliPoster_5.id;
 
     const colors = this.peliPoster_5.colores;
 
@@ -867,6 +1137,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_4.genero;
     this.estreno = this.peliPoster_4.estreno;
     this.imagen = this.peliPoster_4.imagen;
+    this.peli_Id = this.peliPoster_4.id;
 
     const colors = this.peliPoster_4.colores;
 
@@ -954,6 +1225,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_3.genero;
     this.estreno = this.peliPoster_3.estreno;
     this.imagen = this.peliPoster_3.imagen;
+    this.peli_Id = this.peliPoster_3.id;
 
     const colors = this.peliPoster_3.colores;
 
@@ -1041,6 +1313,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_2.genero;
     this.estreno = this.peliPoster_2.estreno;
     this.imagen = this.peliPoster_2.imagen;
+    this.peli_Id = this.peliPoster_2.id;
 
     const colors = this.peliPoster_2.colores;
 
@@ -1129,6 +1402,7 @@ export class HomeComponent {
     this.genero = this.peliPoster_1.genero;
     this.estreno = this.peliPoster_1.estreno;
     this.imagen = this.peliPoster_1.imagen;
+    this.peli_Id = this.peliPoster_1.id;
 
     const colors = this.peliPoster_1.colores;
 

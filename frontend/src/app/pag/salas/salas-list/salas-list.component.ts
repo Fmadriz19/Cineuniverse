@@ -81,7 +81,7 @@ export class SalasListComponent implements OnInit{
       { field: 'genero', header: 'Genero' },
       { field: 'estreno', header: 'Fecha de Estreno' },
       { field: 'descripcion', header: 'Descripcion' },
-      { field: 'colores', header: 'Colores del Poster' }
+      { field: 'imagen', header: 'Imagen del poster' }
   ];
 
   this.exportColumns = this.cols.map((col) => ({ title: col.header, dataKey: col.field }));
@@ -152,5 +152,9 @@ export class SalasListComponent implements OnInit{
             doc.save('products.pdf');
         });
     });
+  }
+
+  newPeli(){
+    this.router.navigateByUrl('create/pelicula');
   }
 }

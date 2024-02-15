@@ -46,6 +46,7 @@ class AdminController extends Controller
             'usuario' => $request->input('usuario'),
             'contraseña' => $request->input('contraseña'),
             'tipoUser' => $request->input('tipoUser'),// si el tipo es 0 (es usuario) y si es 1 (es administrador)
+            'comprado' => $request->input('comprado'),
         ]);
 
         if (empty($request->nombre)) {

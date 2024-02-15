@@ -1,3 +1,20 @@
+/*  General*/
+.color{
+  background: #0f0f0f;  
+}
+
+/*  Header  */
+.custom-height {
+  height: 700px;
+  filter: blur(3px); 
+  opacity: 0.3;
+}
+
+.text-over-carousel {
+  text-align: center; /* Alinea el texto al centro */
+  z-index: 1; /* Coloca el texto encima del carrusel */
+}
+
 
 /*  Carrousel    */
 .container-body{
@@ -5,7 +22,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #000;
+    background: #0f0f0f;
     transform-style: preserve-3d;
     
   }

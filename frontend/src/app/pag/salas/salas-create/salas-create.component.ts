@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+
+interface City {
+  name: string;
+}
 
 @Component({
   selector: 'app-salas-create',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, DropdownModule],
   templateUrl: './salas-create.component.html',
   styleUrl: './salas-create.component.css'
 })
@@ -21,8 +26,12 @@ export class SalasCreateComponent {
   tipo: string = "";
   nombreControl = new FormControl(''); // Crear un FormControl para el combobox
   
+  formGroup: FormGroup | undefined;
 
   currentClienteID = "";
+
+  cities: City[] | undefined;
+  selectedCity: City | undefined;
 
   constructor(private http: HttpClient, private router: Router) {
     const userData = localStorage.getItem('userData');
@@ -43,6 +52,8 @@ export class SalasCreateComponent {
       this.router.navigateByUrl('');
     }
 
+    this.getPeliculas();
+
   }
 
   ngOnInit(): void {
@@ -55,7 +66,13 @@ export class SalasCreateComponent {
   }
 
   onComboboxChange(event: any) {
-    this.tipo = event.target.value; // Asignar el valor seleccionado a la variable nombre
+    if (event.target.value === 'Premium'){
+      this.asiento = 50;
+      this.tipo = event.target.value; // Asignar el valor seleccionado a la variable nombre
+    }else{
+      this.tipo = event.target.value; // Asignar el valor seleccionado a la variable nombre
+      this.asiento = 100;
+    }
   }
 
   register() {  
@@ -66,6 +83,8 @@ export class SalasCreateComponent {
       "inicio": this.inicio,
       "final": this.final,
       "tipo": this.tipo,
+      "disponible": this.asiento,
+      "pelicula": this.selectedCity?.name,
     };
 
     console.log(bodyData);
@@ -78,6 +97,7 @@ export class SalasCreateComponent {
       this.asiento = 0;
       this.inicio = "";
       this.final = "";
+      this.router.navigateByUrl('./')
     })
   }
 
@@ -87,4 +107,18 @@ export class SalasCreateComponent {
     }
   }
 
+  getPeliculas() {
+    this.http.get<any[]>("http://127.0.0.1:8000/api/peliculas").subscribe((resultData: any[]) => {
+      this.cities = resultData.map((obj: any) => ({ name: obj.nombre}));
+    });
+
+    this.formGroup = new FormGroup({
+      selectedCity: new FormControl<City | null>(null)
+  });
+  }
+  
+  onCityChange(event: any) {
+    this.selectedCity = event.value;
+  }
+  
 }

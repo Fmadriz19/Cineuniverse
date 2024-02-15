@@ -9,6 +9,6 @@ class Admin extends Model
 {
     protected $table = 'admins';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'apellido', 'cedula', 'imagen', 'correo', 'direccion', 'pais', 'estado', 'ciudad', 'telefono', 'usuario', 'contraseña', 'tipoUser'];
+    protected $fillable = ['nombre', 'apellido', 'cedula', 'imagen', 'correo', 'direccion', 'pais', 'estado', 'ciudad', 'telefono', 'usuario', 'contraseña', 'tipoUser', 'comprado'];
     use HasFactory;
 }

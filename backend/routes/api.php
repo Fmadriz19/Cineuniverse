@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\PeliculaController;
-
+use App\Http\Controllers\CompradoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,13 @@ Route::get('/pelicula/{id}', [App\Http\Controllers\PeliculaController::class, 's
 Route::post('/pelicula', [App\Http\Controllers\PeliculaController::class, 'store']);
 Route::put('/pelicula/{id}', [App\Http\Controllers\PeliculaController::class, 'update']);
 Route::delete('/pelicula/{id}',[App\Http\Controllers\PeliculaController::class, 'destroy']);
+
+/* ---- Tickets ---- */
+Route::get('/comprados', [App\Http\Controllers\CompradoController::class, 'index']);
+Route::get('/comprado/{id}', [App\Http\Controllers\CompradoController::class, 'show']);
+Route::post('/comprado', [App\Http\Controllers\CompradoController::class, 'store']);
+Route::put('/comprado/{id}', [App\Http\Controllers\CompradoController::class, 'update']);
+Route::delete('/comprado/{id}',[App\Http\Controllers\CompradoController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

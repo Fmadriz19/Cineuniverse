@@ -20,20 +20,6 @@ class PeliculaController extends Controller
 
     public function store(Request $request)
     {
-        /* $rules = ['nombre' => 'required|string|min:1|max:50'];
-        $validator = \Validator::make($request->input(),$rules);
-        if ($validator->fails()){
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()->all()
-            ],400);
-            $pelicula = new Pelicula($request->input());
-            $pelicula->save();
-            return response()->json([
-                'status' => false,
-                'message' => 'Pelicula creada correctamente'
-            ],200);
-        } */
 
         $peliculas = new Pelicula([
             'imagen' => $request->input('imagen'),

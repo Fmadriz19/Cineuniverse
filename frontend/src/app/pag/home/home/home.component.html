@@ -1,32 +1,36 @@
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row">
+<header class="color position-relative">
+    <div class="container px-4 px-lg-5">
 
-            <div class="col-sm">
-                <div class="text-center text-white">
-                    <img src="./jeremy-yap-J39X2xX_8CQ-unsplash.jpg" alt="Fondo de cine">
-                </div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+              <img src="assets/imagenes/corina-rainer-9FDI-_E29fk-unsplash.jpg" class="d-block w-100 custom-height" >
             </div>
-
-            <div class="col-sm">
-
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div>
+            <div class="carousel-item" data-bs-interval="5000">
+              <img src="assets/imagenes/felipe-bustillo-4VDRCoNuvE0-unsplash.jpg" class="d-block w-100 custom-height" >
             </div>
+            <div class="carousel-item" data-bs-interval="5000">
+              <img src="assets/imagenes/geoffrey-moffett-TFRezw7pQwI-unsplash.jpg" class="d-block w-100 custom-height" >
+            </div>
+          </div>
         </div>
+
+        <div class="text-over-carousel position-absolute top-50 start-50 translate-middle">
+          <h1 class="text-white">Cinunivers</h1>
+          <p class="text-white">La magia del cine en tu ciudad</p>
+      </div>
+
     </div>
 </header>
 
 <!-- Section-->
-<section class="py-5">
+<section class="">
     <div class="container-body">
         <div class="container">
           <div class="box" #box>
-            <span style="--i:1;"> <img src="assets/Posters de Peliculas/Accion/contrarreloj.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:2;"> <img src="assets/Posters de Peliculas/Accion/ghosted.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:3;"> <img src="assets/Posters de Peliculas/Accion/el precio del mañana.jpg" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:1;" (click)="poster_15()"> <img [src]="peliImagen_15" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:2;" (click)="poster_14()"> <img [src]="peliImagen_14" data-bs-toggle="modal" data-bs-target="#Modal"></span>
+            <span style="--i:3;" (click)="poster_13()"> <img [src]="peliImagen_13" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:4;" (click)="poster_6()"> <img [src]="peliImagen_6" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:5;" (click)="poster_5()"> <img [src]="peliImagen_5" data-bs-toggle="modal" data-bs-target="#Modal"></span>
             <span style="--i:6;" (click)="poster_4()"> <img [src]="peliImagen_4" data-bs-toggle="modal" data-bs-target="#Modal"></span>
@@ -43,8 +47,8 @@
           </div>
       
           <div class="btns">
-            <button (click)="prevFun()">Prev</button>
-            <button (click)="nextFun()">Next</button>
+            <p-button (click)="prevFun()" icon="pi pi-angle-left" [text]="true" [rounded]="true" severity="help"></p-button>
+            <p-button (click)="nextFun()" icon="pi pi-angle-right" [rounded]="true" [text]="true" severity="help"></p-button>
           </div>
         </div>
       </div>
@@ -137,14 +141,16 @@
         </div>
   
         <div class="modal-footer">
-          <button 
+<!--           <button 
             type="button" 
             class="btn btn-secondary btn-comprar" 
             data-bs-toggle="tooltip" 
             data-bs-placement="left" 
             data-bs-title="La venta de Boletos aun no esta disponible">
             Comprar Boletos
-          </button>
+          </button> -->
+
+          <button type="button" data-bs-dismiss="modal" (click)="comprar()" class="btn btn-primary">Comprar</button>
   
           <button [hidden]="showModal" type="button" data-bs-dismiss="modal" (click)="editPeli()" class="btn btn-primary">Editar Información</button>
         </div>

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('usuario', 20);
             $table->string('contraseña', 20);
             $table->string('tipoUser', 2)->nullable();
+            $table->string('comprado', 255)->nullable();
             $table->timestamps();
         });
     }

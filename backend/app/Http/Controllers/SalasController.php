@@ -37,6 +37,9 @@ class SalasController extends Controller
             'inicio' => $request->input('inicio'),
             'final' => $request->input('final'),
             'tipo' => $request->input('tipo'),
+            'disponible' => $request->input('disponible'),
+            'pelicula' => $request->input('pelicula'),
+            'comprados' => $request->input('comprados'),
         ]);
 
         if ($salas->save()) {

@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterComponent } from './pag/footer/footer/footer.component';
 import { AsyncPipe } from '@angular/common';
 import { PeliculaEditComponent } from './pag/edit/pelicula-edit/pelicula-edit.component';
-
+import { PeliculaCreateComponent } from './pag/registre/pelicula-create/pelicula-create.component';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ import { PeliculaEditComponent } from './pag/edit/pelicula-edit/pelicula-edit.co
   imports: [CommonModule, RouterOutlet, RegistreComponent, LoginComponent, EditComponent, HomeComponent, HttpClientModule, NavbarComponent,
     SalasListComponent, SalasCreateComponent, SalasEditComponent, PerfilComponent, ReactiveFormsModule, PeliculaEditComponent,
     MatFormFieldModule, MatInputModule, MatAutocompleteModule, FooterComponent, FormsModule, AsyncPipe, MatNativeDateModule,
-    MatButtonToggleModule],
+    MatButtonToggleModule, PeliculaCreateComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

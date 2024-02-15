@@ -1,0 +1,32 @@
+
+input[type="color"] {
+    border: none;
+    width: 30px;
+    height: 25px;
+  }
+
+input[type="color"]:hover {
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:hover {
+    cursor: pointer;
+  }
+
+
+  .image-container {
+    max-width: 100px; /* Establece el ancho máximo */
+    max-height: 150px; /* Establece la altura máxima */
+    border: 1px solid #ccc; /* Añade un borde para visualización */
+    display: flex; /* Utiliza flexbox para alinear la imagen */
+    justify-content: center; /* Centra horizontalmente la imagen */
+    align-items: center; /* Centra verticalmente la imagen */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el tamaño del contenedor */
+  }
+  
+  .image-container img {
+    width: auto; /* Permite que el ancho se ajuste automáticamente */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    max-width: 100%; /* Establece el ancho máximo para la imagen */
+    max-height: 100%; /* Establece la altura máxima para la imagen */
+  }
