@@ -1,143 +1,248 @@
 /*  General*/
-.color{
-  background: #0f0f0f;  
+.color {
+  background: #0f0f0f;
 }
 
 /*  Header  */
 .custom-height {
   height: 700px;
-  filter: blur(3px); 
+  filter: blur(3px);
   opacity: 0.3;
 }
 
 .text-over-carousel {
-  text-align: center; /* Alinea el texto al centro */
-  z-index: 1; /* Coloca el texto encima del carrusel */
+  text-align: center;
+  /* Alinea el texto al centro */
+  z-index: 1;
+  /* Coloca el texto encima del carrusel */
 }
 
 
 /*  Carrousel    */
-.container-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #0f0f0f;
-    transform-style: preserve-3d;
-    
-  }
-  
-  .box{
-    position: relative;
-    width: 120px;
-    height: 178px;
-    transform-style: preserve-3d;
-    transition: 1.5s;
-    transform: perspective(1000px) rotateY(0deg);
-    left: 500px;
-  }
-  
-  .box span{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-origin: center;
-    transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i) * 24deg)) translateZ(300px);
-    -webkit-box-reflect: below 0px linear-gradient(transparent, #0001);
-  }
-  
-  .box span img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    user-select: none;
-  }
-  
-  .box span img:hover{
-    cursor: pointer;
-    -webkit-box-shadow: 0 0 15px #fff;
-    box-shadow: 0 0 15px #fff;
-  }
-  
-  .btns{
-    position: absolute;
-    bottom: 100px;
-    display: flex;
-    gap: 30px;
-    left: 615px;
-  }
+.container-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f0f0f;
+  transform-style: preserve-3d;
+
+}
+
+.box {
+  position: relative;
+  width: 120px;
+  height: 178px;
+  transform-style: preserve-3d;
+  transition: 1.5s;
+  transform: perspective(1000px) rotateY(0deg);
+  left: 500px;
+}
+
+.box span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--i) * 24deg)) translateZ(300px);
+  -webkit-box-reflect: below 0px linear-gradient(transparent, #0001);
+}
+
+.box span img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.box span img:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 15px #fff;
+  box-shadow: 0 0 15px #fff;
+}
+
+.btns {
+  position: absolute;
+  bottom: 100px;
+  display: flex;
+  gap: 30px;
+  left: 615px;
+}
 
 /*  Fondos de los Modales*/
 
 input[type="color"] {
-    border: none;
-    pointer-events: none; /* Deshabilitar la interacción con el input */
+  border: none;
+  pointer-events: none;
+  /* Deshabilitar la interacción con el input */
+}
+
+/*  Monja   */
+.accordion-item .accordion-header .accordion-body {
+  background: #F2F2F2;
+}
+
+.accordion {
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0D0D0D;
+}
+
+.sombra {
+  margin-top: 10px;
+}
+
+/*  Exorcismo del Papa   */
+#Exorcismo .modal-content {
+  background:
+    linear-gradient(to right, #33250A, #8C7853, #594623),
+    /* Primer degradado */
+    linear-gradient(to bottom, #F2E2C4, #BFB197);
+  /* Segundo degradado */
+}
+
+#Exorcismo .accordion-item .accordion-header .accordion-body {
+  background: #F2E2C4;
+}
+
+#Exorcismo .accordion {
+  border-radius: 10px;
+  box-shadow: 0 0 10px #33250A;
+}
+
+
+
+/*  Animacion de Botones  */
+
+/*  No disponible   */
+.btn-comprar:hover {
+  animation: shake 0.2s linear 1;
+}
+
+.btn-comprar:hover::before {
+  translate: 0 0;
+}
+
+@keyframes shake {
+  0% {
+    rotate: 0deg;
   }
-  
-  /*  Monja   */  
-  .accordion-item .accordion-header .accordion-body{
-    background: #F2F2F2;
+
+  33% {
+    rotate: 10deg;
   }
-  
-  .accordion{
-    border-radius: 10px;
-    box-shadow: 0 0 10px #0D0D0D;
+
+  66% {
+    rotate: -10deg;
   }
-  
-  .sombra{
-    margin-top: 10px;
+
+  100% {
+    rotate: 10deg;
   }
-  
-  /*  Exorcismo del Papa   */
-  #Exorcismo .modal-content {
-    background: 
-      linear-gradient(to right, #33250A, #8C7853, #594623), /* Primer degradado */
-      linear-gradient(to bottom, #F2E2C4, #BFB197); /* Segundo degradado */
+}
+
+
+
+.svg {
+/*   cursor: url(../../../../assets/image/view_709612.png), auto;
+ */
+  cursor: pointer;
+}
+
+
+/* Footer */
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
   }
-  
-  #Exorcismo .accordion-item .accordion-header .accordion-body{
-    background: #F2E2C4;
-  }
-  
-  #Exorcismo .accordion{
-    border-radius: 10px;
-    box-shadow: 0 0 10px #33250A;
-  }
-  
-  
-  
-  /*  Animacion de Botones  */
-  
-  /*  No disponible   */
-  .btn-comprar:hover {
-    animation: shake 0.2s linear 1;
-  }
-  
-  .btn-comprar:hover::before {
-    translate: 0 0;
-  }
-  
-  @keyframes shake {
-    0% {
-      rotate: 0deg;
-    }
-  
-    33% {
-      rotate: 10deg;
-    }
-  
-    66% {
-      rotate: -10deg;
-    }
-  
-    100% {
-      rotate: 10deg;
-    }
-  }
-  
+}
+
+.b-example-divider {
+  width: 100%;
+  height: .1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: solid rgba(255, 255, 255, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(146, 146, 146, 0.1), inset 0 .125em .5em rgba(109, 109, 109, 0.15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.btn-bd-primary {
+  --bd-violet-bg: #712cf9;
+  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--bd-violet-bg);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #6528e0;
+  --bs-btn-hover-border-color: #6528e0;
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #5a23c8;
+  --bs-btn-active-border-color: #5a23c8;
+}
+
+.bd-mode-toggle {
+  z-index: 1500;
+}
+
+.bd-mode-toggle .dropdown-menu .active .bi {
+  display: block !important;
+}
+
+.container-3 {
+  width: 100%;
+  height: max-content;
+}
+
+.container-3 h5 {
+  color: white;
+}
+
+.color-2{
+  background-color: #151516;
+}

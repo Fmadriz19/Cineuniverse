@@ -1,218 +1,260 @@
-
 <div class="container">
-    <img src="assets/image/fondo_de_tickets.jpg" class="card-img">
+  <img src="assets/image/fondo_de_tickets.jpg" class="card-img">
 
-    <div class="card text-bg-dark card-img-overlay mx-auto text-center row w-75" style="width: 720px; height: 520px;">
-      <div class="card-img-overlay">
-        <div class="card-header">
-          Seleccion de asientos
-        </div>
+  <div class="card text-bg-dark card-img-overlay mx-auto text-center row w-75" style="width: 720px; height: 520px;">
+    <div class="card-img-overlay">
+      <div class="card-header">
+        Seleccion de asientos
+      </div>
 
-        <div class="card-body">
+      <div class="card-body">
 
-          <div class="row">
+        <div class="row">
 
-            <!-- Primera Columna -->
+          <!-- Primera Columna -->
 
-            <!-- Letras de las filas -->
-            <div class="col-1 col-container_2">
+          <!-- Letras de las filas -->
+          <div class="col-1 col-container_2">
 
-                <div class="filas-container mb-5 row-container_2">
-                    <div *ngFor="let fila of filas; let i = index" class="field-checkbox letras" [style.visibility]="i === 0 ? 'hidden' : 'visible'">
-                      <strong>{{fila.name}}</strong>
-                    </div>
+            <div class="filas-container mb-5 row-container_2">
+              <div *ngFor="let fila of filas; let i = index" class="field-checkbox letras"
+                [style.visibility]="i === 0 ? 'hidden' : 'visible'">
+                <strong>{{fila.name}}</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Eleccion de asientos -->
+          <div class="col-7 col-container">
+
+            <div class="row row-container">
+
+              <!-- Numeros de columnas -->
+              <div class="row">
+
+                <div class="icon-container me-4">
+                  <div *ngFor="let columna of columnas" class="field-checkbox letras">
+                    <strong>{{columna.name}}</strong>
+                  </div>
                 </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of categories" class="field-checkbox">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 12px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_2; let i = index" class="field-checkbox"
+                    [style.visibility]="i === 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 14px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_3; let i = index" class="field-checkbox"
+                    [style.visibility]="i === 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 16px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_4; let i = index" class="field-checkbox"
+                    [style.visibility]="i === 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 18px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_5; let i = index" class="field-checkbox"
+                    [style.visibility]="i <= 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 20px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_6; let i = index" class="field-checkbox"
+                    [style.visibility]="i <= 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 22px;"></i>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-2">
+
+                <div class="icon-container">
+                  <div *ngFor="let category of asientos_7; let i = index" class="field-checkbox"
+                    [style.visibility]="i <= 2 ? 'hidden' : 'visible'">
+                    <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
+                      (click)="esCoincidencia(category) ? null : toggleSelection(category)"
+                      [style.color]="esCoincidencia(category) ? 'red' : ''"
+                      [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
+                      style="font-size: 24px;"></i>
+                  </div>
+                </div>
+
+              </div>
 
             </div>
 
-            <!-- Eleccion de asientos -->
-            <div class="col-7 col-container">
+            <div class="row mt-5">
 
-              <div class="row row-container">
-
-                <!-- Numeros de columnas -->
-                <div class="row">
-
-                  <div class="icon-container me-4">
-                    <div *ngFor="let columna of columnas" class="field-checkbox letras">
-                      <strong>{{columna.name}}</strong>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of categories" class="field-checkbox">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 12px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_2; let i = index" class="field-checkbox" [style.visibility]="i === 2 ? 'hidden' : 'visible'">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 14px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_3; let i = index" class="field-checkbox" [style.visibility]="i === 2 ? 'hidden' : 'visible'">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 16px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_4; let i = index" class="field-checkbox" [style.visibility]="i === 2 ? 'hidden' : 'visible'">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 18px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_5; let i = index" class="field-checkbox" [style.visibility]="i <= 2 ? 'hidden' : 'visible'">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 20px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_6; let i = index" class="field-checkbox" [style.visibility]="i <= 2 ? 'hidden' : 'visible'">
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}" 
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 22px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-
-                <div class="row mt-2">
-
-                    <div class="icon-container">
-                        <div *ngFor="let category of asientos_7; let i = index" class="field-checkbox" [style.visibility]="i <= 2 ? 'hidden' : 'visible'" >
-                          <i class="bi bi-headset-vr" aria-hidden="true" [ngClass]="{'selected': isSelected(category)}"
-                          (click)="esCoincidencia(category) ? null : toggleSelection(category)"
-                          [style.color]="esCoincidencia(category) ? 'red' : ''" [style.textShadow]="esCoincidencia(category) ? '0 5px 10px red' : ''"
-                          style="font-size: 24px;"></i>
-                        </div>
-                    </div>                      
-
-                </div>
-                
-              </div>
-
-              <div class="row mt-5">
-            
-                <div class="pantalla">
-                  <h1>Pantalla</h1>
-                </div>
-
-              </div>
-
-            </div>  
-
-            <!-- Segunda Columna -->
-            <div class="col-4 mt-3">
-
-              <div class="row justify-content-center">
-
-                <article>
-                  <div class="hola">
-                    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="22.5em" height="22.5em" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve" class="svg-loader">
-                      <defs>
-                        <!-- SVG GLOW FILTER -->
-                        <filter id="glow" x="-120%" y="-120%" width="400%" height="400%">
-                          <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0"></feOffset>
-                          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
-                          <feBlend in="SourceGraphic" in2="blurOut" mode="overlay"></feBlend>
-                        </filter>
-                      </defs>
-                      <g>
-                        <!-- Gray circle under the second countdown circle -->
-                        <circle fill="none" cx="6.25em" cy="6.25em" r="5em" class="gray" transform="scale(.8, .8) translate(25 25)"/>
-                        <!-- Second countdown circle -->
-                        <circle id="seconds_circle" fill="none" cx="6.25em" cy="6.25em" r="5em" class="svg-loader_grow" role="progressbar" transform = "rotate(-89 100 100) scale(.8, .8) translate(25 25)" filter="url(#glow)"/>
-                        <!-- Second countdown text -->
-                        <text id="second_text" text-align="center" x="1.3em" y="2.4em" font-family="'Open Sans', Verdana" font-size="3em" fill="#fff">:{{segundos}}</text>
-                        <!-- Minute countdown text -->
-                        <text id="minute_text" text-align="center" x="5.5em" y="4em" font-family="'Open Sans', Verdana" font-size="1em" fill="#fff">{{minutos}}</text>
-                        <!-- Minute countdown circle -->
-                        <circle id="minutes_circle" fill="none" cx="6.25em" cy="6.25em" r="5em" class="svg-loader_grow" role="progressbar" transform = "rotate(-89 100 100) translate(0 200) scale(1, -1)" filter="url(#glow)"/>
-                      </g>
-                    </svg>
-                  </div>
-                </article>
-
-              </div>
-
-              <div class="row justify-content-center">
-
-                <i class="bi bi-headset-vr col-2 icon-selec-2"></i> <p class="col-8 text-start">{{seleCant}} asientos por seleccionar</p>
-
-              </div>
-
-              <div class="row">
-    
-                <div class="asientos-checkbox me-4">
-                  <div *ngFor="let category of selectedCategories">
-
-                    <p-chip styleClass="pl-0 pr-3">
-                      <i class="bi bi-headset-vr me-1 icon-selec"></i> 
-                      <span class="ml-2 font-medium">{{category.key}}</span>
-                    </p-chip>
-
-                  </div>
-                </div>
-
-              </div>
-              
-              <div class="row mt-3">
-                <p-button (onClick)="continuar()">continuar</p-button>
+              <div class="pantalla">
+                <h1>Pantalla</h1>
               </div>
 
             </div>
 
           </div>
- 
+
+          <!-- Segunda Columna -->
+          <div class="col-4 mt-3">
+
+            <div class="row justify-content-center">
+
+              <article>
+                <div class="hola">
+                  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" width="22.5em" height="22.5em" viewBox="0 0 200 200"
+                    enable-background="new 0 0 200 200" xml:space="preserve" class="svg-loader">
+                    <defs>
+                      <!-- SVG GLOW FILTER -->
+                      <filter id="glow" x="-120%" y="-120%" width="400%" height="400%">
+                        <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0"></feOffset>
+                        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10"></feGaussianBlur>
+                        <feBlend in="SourceGraphic" in2="blurOut" mode="overlay"></feBlend>
+                      </filter>
+                    </defs>
+                    <g>
+                      <!-- Gray circle under the second countdown circle -->
+                      <circle fill="none" cx="6.25em" cy="6.25em" r="5em" class="gray"
+                        transform="scale(.8, .8) translate(25 25)" />
+                      <!-- Second countdown circle -->
+                      <circle id="seconds_circle" fill="none" cx="6.25em" cy="6.25em" r="5em" class="svg-loader_grow"
+                        role="progressbar" transform="rotate(-89 100 100) scale(.8, .8) translate(25 25)"
+                        filter="url(#glow)" />
+                      <!-- Second countdown text -->
+                      <text id="second_text" text-align="center" x="1.3em" y="2.4em" font-family="'Open Sans', Verdana"
+                        font-size="3em" fill="#fff">:{{segundos}}</text>
+                      <!-- Minute countdown text -->
+                      <text id="minute_text" text-align="center" x="5.5em" y="4em" font-family="'Open Sans', Verdana"
+                        font-size="1em" fill="#fff">{{minutos}}</text>
+                      <!-- Minute countdown circle -->
+                      <circle id="minutes_circle" fill="none" cx="6.25em" cy="6.25em" r="5em" class="svg-loader_grow"
+                        role="progressbar" transform="rotate(-89 100 100) translate(0 200) scale(1, -1)"
+                        filter="url(#glow)" />
+                    </g>
+                  </svg>
+                </div>
+              </article>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+              <i class="bi bi-headset-vr col-2 icon-selec-2"></i>
+              <p class="col-8 text-start">{{seleCant}} asientos por seleccionar</p>
+
+            </div>
+
+            <div class="row">
+
+              <div class="asientos-checkbox me-4">
+                <div *ngFor="let category of selectedCategories">
+
+                  <p-chip styleClass="pl-0 pr-3">
+                    <i class="bi bi-headset-vr me-1 icon-selec"></i>
+                    <span class="ml-2 font-medium">{{category.key}}</span>
+                  </p-chip>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row mt-3">
+              <p-button (onClick)="continuar()">continuar</p-button>
+            </div>
+
+            <div class="row mt-3 ms-4">
+
+              <div class="row">
+                <i class="bi bi-headset-vr col-2 field-checkbox"></i>
+                <p class="col-8 text-start">Libre</p>
+              </div>
+
+              <div class="row">
+                <i class="bi bi-headset-vr col-2 icon-selec-2"></i>
+                <p class="col-8 text-start">Seleccionado</p>
+              </div>
+
+              <div class="row">
+                <i class="bi bi-headset-vr col-2 icon-ocupado"></i>
+                <p class="col-8 text-start">Ocupados</p>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
-    </div>
 
+    </div>
   </div>
 
-  <!-- <p-button label="continual" severity="success" (onClick)="visual()"></p-button> -->
+</div>
+
+<!-- <p-button label="continual" severity="success" (onClick)="visual()"></p-button> -->

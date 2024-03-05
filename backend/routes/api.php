@@ -6,7 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\CompradoController;
-
+use App\Http\Controllers\EnvioController;
+use App\Mail\EnvioCorreosMailable;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +46,14 @@ Route::get('/comprado/{id}', [App\Http\Controllers\CompradoController::class, 's
 Route::post('/comprado', [App\Http\Controllers\CompradoController::class, 'store']);
 Route::put('/comprado/{id}', [App\Http\Controllers\CompradoController::class, 'update']);
 Route::delete('/comprado/{id}',[App\Http\Controllers\CompradoController::class, 'destroy']);
+
+/* ---- Envio de correo ---- */
+Route::post('/envio', [App\Http\Controllers\CompradoController::class, 'send']);
+
+/* ---- Video de youtube ---- */
+Route::get('/videos', [App\Http\Controllers\EnvioController::class, 'index']);
+Route::post('/video', [App\Http\Controllers\EnvioController::class, 'store']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -29,7 +29,7 @@ interface Servicio {
   templateUrl: './seleccion-asiento.component.html',
   styleUrl: './seleccion-asiento.component.css'
 })
-export class SeleccionAsientoComponent implements OnInit{
+export class SeleccionAsientoComponent implements OnInit {
 
   servicios!: any;
 
@@ -170,10 +170,10 @@ export class SeleccionAsientoComponent implements OnInit{
 
   // Asientos elegidos pero separados 
   asientosSelec!: any;
+  puestosSelec!: any;
 
   constructor(private router: Router, private cantidadService: CantidadServiceService, private elementRef: ElementRef,
-    private readonly activatedRoute: ActivatedRoute, private http: HttpClient) 
-  {
+    private readonly activatedRoute: ActivatedRoute, private http: HttpClient) {
 
     const userData = localStorage.getItem('userData');
 
@@ -191,25 +191,25 @@ export class SeleccionAsientoComponent implements OnInit{
     this.peliID = this.activatedRoute.snapshot.params['id1'];
     this.salaID = this.activatedRoute.snapshot.params['id2'];
 
-    
+
     this.getApi();
     this.countdown();
   }
 
   ngOnInit(): void {
-    this.servicios  = this.cantidadService.getServicios();
+    this.servicios = this.cantidadService.getServicios();
     this.seleCant = this.servicios.cantidad;
     console.log(this.servicios);
 
 
-    if (this.servicios.cantidad === undefined){
+    if (this.servicios.cantidad === undefined) {
       this.router.navigateByUrl(`/tickets/${this.peliID}`);
-    }else {
+    } else {
       this.seleCant = this.servicios.cantidad;
 
     }
 
-    
+
 
   }
 
@@ -217,39 +217,39 @@ export class SeleccionAsientoComponent implements OnInit{
     this.secondsCircle = this.elementRef.nativeElement.querySelector('#seconds_circle');
     this.minutesCircle = this.elementRef.nativeElement.querySelector('#minutes_circle');
 
-    if (this.secondsCircle){
+    if (this.secondsCircle) {
       this.secondsCircle.style.strokeDashoffset = '0';
     }
 
-    if (this.minutesCircle){
+    if (this.minutesCircle) {
       this.minutesCircle.style.strokeDashoffset = '500';
     }
-    
+
   }
 
   // Extrae el cliente
-  getUpdate(){
+  getUpdate() {
     this.http.get(`http://127.0.0.1:8000/api/admin/${this.userID}`).subscribe((data: any) => {
       this.admin = data;
     });
   }
 
   // Extraer de la api
-  getApi(){
+  getApi() {
     // Pelicula
     this.http.get(`http://127.0.0.1:8000/api/pelicula/${this.peliID}`).subscribe((data: any) => {
       this.peli = data;
-    }); 
+    });
 
     // Sala
     this.http.get(`http://127.0.0.1:8000/api/sala/${this.salaID}`).subscribe((data: any) => {
       this.sala = data;
       this.ocupados();
 
-    }); 
+    });
   }
 
-  visual(){
+  visual() {
     console.log(this.selectedCategories);
   }
 
@@ -260,20 +260,17 @@ export class SeleccionAsientoComponent implements OnInit{
 
   toggleSelection(category: any) {
 
-    if (this.isSelected(category)) 
-    {
-      this.selectedCategories = this.selectedCategories.filter(c => c !== category);  
+    if (this.isSelected(category)) {
+      this.selectedCategories = this.selectedCategories.filter(c => c !== category);
       console.log(this.selectedCategories);
 
-      this.seleCant ++;
-    } 
-    else 
-    {
-      if (this.seleCant > 0)
-      {
-      this.selectedCategories.push(category);
-      console.log(this.selectedCategories);
-      this.seleCant --;
+      this.seleCant++;
+    }
+    else {
+      if (this.seleCant > 0) {
+        this.selectedCategories.push(category);
+        console.log(this.selectedCategories);
+        this.seleCant--;
       }
     }
 
@@ -284,13 +281,13 @@ export class SeleccionAsientoComponent implements OnInit{
     for (const comprado of this.comprados) {
       const claveComprado = comprado.key;
       const claveCategoria = category.key;
-  
+
       if (claveComprado === claveCategoria) {
         return true;
-        
+
       }
     }
-  
+
     return false;
   }
 
@@ -307,43 +304,43 @@ export class SeleccionAsientoComponent implements OnInit{
       this.totalSeconds -= 1;
     }, 1000);
   }
-  
+
 
   displayTime() {
     const seconds = this.totalSeconds % 60;
     const minutes = Math.floor((this.totalSeconds - seconds) / 60);
-    const secondsCircle = 500 - ((seconds/60) * 500);
+    const secondsCircle = 500 - ((seconds / 60) * 500);
     const minutesCircle = 500 - (((this.timer - this.totalSeconds) / this.timer) * 500);
 
     this.minutos = (minutes < 10) ? `0${minutes}` : `${minutes}`;
     this.segundos = (seconds < 10) ? `0${seconds}` : `${seconds}`;
 
-    if (this.secondsCircle){
+    if (this.secondsCircle) {
       this.secondsCircle.style.strokeDashoffset = `${secondsCircle}`;
-      
-      if (this.totalSeconds > (this.timer * 0.1) && this.totalSeconds <= (this.timer * 0.5)){
+
+      if (this.totalSeconds > (this.timer * 0.1) && this.totalSeconds <= (this.timer * 0.5)) {
         this.secondsCircle.style.stroke = '#FFF017';
       }
-      else if (this.totalSeconds <= this.timer * 0.1){
+      else if (this.totalSeconds <= this.timer * 0.1) {
         this.secondsCircle.style.stroke = '#C9140F';
       }
     }
 
-    if (this.minutesCircle){
+    if (this.minutesCircle) {
       this.minutesCircle.style.strokeDashoffset = `${minutesCircle}`;
 
-      if (this.totalSeconds > (this.timer * 0.1) && this.totalSeconds <= (this.timer * 0.5)){
+      if (this.totalSeconds > (this.timer * 0.1) && this.totalSeconds <= (this.timer * 0.5)) {
         this.minutesCircle.style.stroke = '#FFF017';
       }
-      else if (this.totalSeconds <= this.timer * 0.1){
+      else if (this.totalSeconds <= this.timer * 0.1) {
         this.minutesCircle.style.stroke = '#C9140F';
       }
     }
-    
+
   }
 
   // Asientos comprados
-  ocupados(){
+  ocupados() {
     const ocupados = this.sala.comprados;
 
     const codigos: string[] = ocupados.split('/');
@@ -357,40 +354,39 @@ export class SeleccionAsientoComponent implements OnInit{
   }
 
   // Boton de continuar
-  continuar(){
+  continuar() {
     const keys = this.selectedCategories.map((item) => item.key);
-  
+
     let valor = '';
 
-    for (let num = 0; num < keys.length; num++){
-      if (num === 0){
+    for (let num = 0; num < keys.length; num++) {
+      if (num === 0) {
         valor = keys[num];
-      }else {
+      } else {
         valor += `/${keys[num]}`;
       }
-      
+
     }
 
-    if (this.sala.comprados === null)
-    {
+    if (this.sala.comprados === null) {
       this.asientosSelec = valor;
       this.enviarComprados();
       console.log(this.asientosSelec);
-    } 
-    else 
-    {
+    }
+    else {
       this.asientosSelec = `${this.sala.comprados}/${valor}`;
+      this.puestosSelec = valor;
       console.log(this.asientosSelec);
       this.enviarComprados();
     }
-    
-    
+
+
   }
-  
-  enviarComprados(){
+
+  enviarComprados() {
 
     let body = {
-      asientos: this.asientosSelec,
+      asientos: this.puestosSelec,
       sala: this.sala.nombre,
       cliente: this.admin.usuario,
       pelicula: this.peli.nombre,
@@ -398,25 +394,60 @@ export class SeleccionAsientoComponent implements OnInit{
     }
 
     this.http.post(`http://127.0.0.1:8000/api/comprado`, body).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          console.log('registrado con exito');
-          this.actualizarSala();
-        },
-        error: (err: any) => {
-          console.log(err.error.message);
-        }
-      });
+      next: (res: any) => {
+        console.log(res);
+        console.log('registrado con exito');
+        this.enviarCorreo();
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+      }
+    });
 
     console.log(body);
-    
+
   }
 
-  actualizarSala(){
-    
-    let cantDisponible = Number(this.sala.disponible) - Number(this.seleCant);
+  enviarCorreo() {
 
-    let actualizarDisponible = cantDisponible.toString();
+    let body = {
+      asientos: this.puestosSelec,
+      sala: this.sala.nombre,
+      cliente: this.admin.usuario,
+      pelicula: this.peli.nombre,
+      horario: this.sala.inicio,
+      web: this.servicios.web,
+      servicio: this.servicios.servicio,
+      base: this.servicios.base,
+      iva: this.servicios.iva,
+      totalUSD: this.servicios.totalUSD,
+      total: this.servicios.total,
+    }
+
+    console.log(body);
+
+
+    this.http.post(`http://127.0.0.1:8000/api/envio`, body).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        console.log('Correo enviado con exito');
+        /* this.actualizarSala(); 
+          RECUERDA CAMBIARLE LA CLASE DEL ONCLICK AL BOTON A enviarComprados()
+
+        */
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+      }
+    })
+
+  }
+
+  actualizarSala() {
+
+    let cantDisponible = this.sala.disponible - this.seleCant;
+
+    let actualizarDisponible = this.sala.asiento;
 
     var body = {
       nombre: this.sala.nombre,
@@ -424,21 +455,21 @@ export class SeleccionAsientoComponent implements OnInit{
       inicio: this.sala.inicio,
       final: this.sala.final,
       tipo: this.sala.tipo,
-      disponible: actualizarDisponible,
+      disponible: cantDisponible,
       pelicula: this.sala.pelicula,
       comprados: this.asientosSelec,
     }
 
     this.http.put(`http://127.0.0.1:8000/api/sala/${this.salaID}`, body).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          console.log('actualizado con exito');
-          this.router.navigateByUrl('');
-        },
-        error: (err: any) => {
-          console.log(err.error.message);
-        }
-      });
+      next: (res: any) => {
+        console.log(res);
+        console.log('actualizado con exito');
+        this.router.navigateByUrl('');
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+      }
+    });
 
     console.log(body);
   }

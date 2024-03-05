@@ -55,9 +55,20 @@
   .field-checkbox{
     color: #0EE600;
   }
+
+  .field-checkbox-2{
+    color: #0EE600;
+    text-shadow: 0 5px 10px #0EE600;
+  }
   
   .icon-selec{
     color: #E900BB;
+  }
+
+  .icon-ocupado{
+    color: red;
+    text-shadow: 0 5px 10px red;
+    
   }
   
   .icon-selec-2{

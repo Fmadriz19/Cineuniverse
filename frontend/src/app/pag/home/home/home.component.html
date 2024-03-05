@@ -1,147 +1,287 @@
 <header class="color position-relative">
-    <div class="container px-4 px-lg-5">
+  <div class="container px-4 px-lg-5">
 
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
-              <img src="assets/imagenes/corina-rainer-9FDI-_E29fk-unsplash.jpg" class="d-block w-100 custom-height" >
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-              <img src="assets/imagenes/felipe-bustillo-4VDRCoNuvE0-unsplash.jpg" class="d-block w-100 custom-height" >
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-              <img src="assets/imagenes/geoffrey-moffett-TFRezw7pQwI-unsplash.jpg" class="d-block w-100 custom-height" >
-            </div>
-          </div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+          <img src="assets/imagenes/corina-rainer-9FDI-_E29fk-unsplash.jpg" class="d-block w-100 custom-height">
         </div>
-
-        <div class="text-over-carousel position-absolute top-50 start-50 translate-middle">
-          <h1 class="text-white">Cinunivers</h1>
-          <p class="text-white">La magia del cine en tu ciudad</p>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img src="assets/imagenes/felipe-bustillo-4VDRCoNuvE0-unsplash.jpg" class="d-block w-100 custom-height">
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img src="assets/imagenes/geoffrey-moffett-TFRezw7pQwI-unsplash.jpg" class="d-block w-100 custom-height">
+        </div>
       </div>
-
     </div>
+
+    <div class="text-over-carousel position-absolute top-50 start-50 translate-middle">
+      <h1 class="text-white">Cinunivers</h1>
+      <p class="text-white">La magia del cine en tu ciudad</p>
+    </div>
+
+  </div>
 </header>
 
 <!-- Section-->
 <section class="">
-    <div class="container-body">
-        <div class="container">
-          <div class="box" #box>
-            <span style="--i:1;" (click)="poster_15()"> <img [src]="peliImagen_15" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:2;" (click)="poster_14()"> <img [src]="peliImagen_14" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:3;" (click)="poster_13()"> <img [src]="peliImagen_13" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:4;" (click)="poster_6()"> <img [src]="peliImagen_6" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:5;" (click)="poster_5()"> <img [src]="peliImagen_5" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:6;" (click)="poster_4()"> <img [src]="peliImagen_4" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:7;" (click)="poster_12()"> <img [src]="peliImagen_12" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:8;" (click)="poster_11()"> <img [src]="peliImagen_11" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:9;" (click)="poster_10()"> <img [src]="peliImagen_10" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:10;" (click)="poster_9()"> <img [src]="peliImagen_9" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:11;" (click)="poster_8()"> <img [src]="peliImagen_8" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:12;" (click)="poster_7()"> <img [src]="peliImagen_7" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:13;" (click)="poster_3()"> <img [src]="peliImagen_3" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:14;" (click)="poster_2()"> <img [src]="peliImagen_2" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-            <span style="--i:15;" (click)="poster_1()"> <img [src]="peliImagen_1" data-bs-toggle="modal" data-bs-target="#Modal"></span>
-      
+  <div class="container-body">
+
+    <div class="container">
+      <div class="box" #box>
+        <span style="--i:1;" (click)="poster_15()"> <img [src]="peliImagen_15" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:2;" (click)="poster_14()"> <img [src]="peliImagen_14" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:3;" (click)="poster_13()"> <img [src]="peliImagen_13" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:4;" (click)="poster_6()"> <img [src]="peliImagen_6" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:5;" (click)="poster_5()"> <img [src]="peliImagen_5" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:6;" (click)="poster_4()"> <img [src]="peliImagen_4" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:7;" (click)="poster_12()"> <img [src]="peliImagen_12" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:8;" (click)="poster_11()"> <img [src]="peliImagen_11" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:9;" (click)="poster_10()"> <img [src]="peliImagen_10" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:10;" (click)="poster_9()"> <img [src]="peliImagen_9" data-bs-toggle="modal"
+            data-bs-toggle="modal" data-bs-target="#Modal"></span>
+        <span style="--i:11;" (click)="poster_8()"> <img [src]="peliImagen_8" data-bs-toggle="modal"
+            data-bs-toggle="modal" data-bs-target="#Modal"></span>
+        <span style="--i:12;" (click)="poster_7()"> <img [src]="peliImagen_7" data-bs-toggle="modal"
+            data-bs-toggle="modal" data-bs-target="#Modal"></span>
+        <span style="--i:13;" (click)="poster_3()"> <img [src]="peliImagen_3" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:14;" (click)="poster_2()"> <img [src]="peliImagen_2" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+        <span style="--i:15;" (click)="poster_1()"> <img [src]="peliImagen_1" data-bs-toggle="modal"
+            data-bs-target="#Modal"></span>
+
+      </div>
+
+      <div class="btns">
+        <p-button (click)="prevFun()" icon="pi pi-angle-left" [text]="true" [rounded]="true" severity="help"></p-button>
+        <p-button (click)="nextFun()" icon="pi pi-angle-right" [rounded]="true" [text]="true"
+          severity="help"></p-button>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section class="color">
+
+  <div class="card color">
+
+    <h2 class="mt-3 text-center" style="color: white;">Proximo Estrenos</h2>
+
+    <p-carousel [value]="imagenes" [numVisible]="3" [numScroll]="1" [circular]="false"
+      [responsiveOptions]="responsiveOptions">
+      <ng-template let-imagen pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+          <div class="mb-3">
+            <p-image (click)="previsualizar(imagen)" src="{{imagen.itemImageSrc}}" alt="Image" width="200" height="180"
+              class="svg">
+
+            </p-image>
           </div>
-      
-          <div class="btns">
-            <p-button (click)="prevFun()" icon="pi pi-angle-left" [text]="true" [rounded]="true" severity="help"></p-button>
-            <p-button (click)="nextFun()" icon="pi pi-angle-right" [rounded]="true" [text]="true" severity="help"></p-button>
+          <div>
+            <h4 class="mb-1" style="color: white;">{{ imagen.title }}</h4>
+            <h6 class="mt-0 mb-3" style="color: white;">{{ 'Estreno: ' + imagen.alt }}</h6>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '46vw' }" [draggable]="false"
+    [resizable]="false" (onHide)="onDialogClose()">
+
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-bold white-space-nowrap">{{imagenPreview.title}}</span>
+      </div>
+    </ng-template>
+
+    <div class="card" *ngIf="imagenPreview">
+
+      <img id="overlay-image" [src]="imagenPreview.itemImageSrc"
+        style="position:absolute; top:0; left:0; width:580px; height:315px; z-index: 1;" />
+
+      <iframe width="580" height="315" [src]="getSafeUrl(imagenPreview.thumbnailVideoSrc)" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen id="deadpol"></iframe>
+
+    </div>
+
+  </p-dialog>
+
+</section>
+
+<!-- Footer -->
+
+<div class="b-example-divider"></div>
+
+<div class="container-3 color-2">
+
+  <div class="container color-2">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 offset-md-1 mb-3">
+          <div class="d-flex flex-column flex-sm-row">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10183.511308921521!2d-67.96230350099013!3d10.238952144692366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e805d284797b2c9%3A0x792aeec9324d3695!2sUniversidad%20Jos%C3%A9%20Antonio%20P%C3%A1ez!5e0!3m2!1ses!2sve!4v1709657842238!5m2!1ses!2sve"
+              width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="border: 2px solid #ccc; box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);"></iframe>
           </div>
         </div>
       </div>
-</section>
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-2 my-2 border-top text-light">
+        <p>&copy; 2024 Company, Inc. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+</div>
+
+
 
 <!-- Modal -->
 
 <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" 
-            style="background: linear-gradient(to bottom, #260101, #661c1c, #a65656), linear-gradient(to bottom, #F2F2F2, #0D0D0D);">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #000000">{{titulo}}</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-  
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-  
-              <div class="col-md-4 text-center">
-                <img class="sombra" [src]="imagen" style="box-shadow: 5px 5px 5px #F2F2F2, 10px 10px 10px #ffffff;">
-              </div>
-  
-              <div class="col ms-auto">
-  
-                <div class="accordion" id="accordionExample">
-                  <div style="color: #ffffff;" class="accordion-item acordion-item">
-                    <h2 class="accordion-header">
-                      <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Descripción
-                      </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        {{descripcion}}
-                      </div>
-                    </div>
-                  </div>
-                  <div style="color: #ffffff;" class="accordion-item acordion-item2">
-                    <h2 class="accordion-header">
-                      <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Genero
-                      </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        {{genero}}
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div style="color: #ffffff;" class="accordion-item acordion-item3">
-                    <h2 class="accordion-header">
-                      <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Fecha de Estreno
-                      </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        {{estreno}}
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div style="color: #ffffff;" class="accordion-item acordion-item4">
-                    <h2 class="accordion-header">
-                      <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Paleta de Colores
-                      </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>Armonía de color:</strong> Complementarios <br>
-                        <input type="color" value="#8C3A1C">
-                        <input type="color" value="#F2B885">
-                        <input type="color" value="#D97E4A">
-                        <input type="color" value="#F2F2F2">
-                        <input type="color" value="#0D0D0D">
-  
-                      </div>
-                    </div>
-                  </div>
-  
-                </div>
-              </div>
-  
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content"
+      style="background: linear-gradient(to bottom, #260101, #661c1c, #a65656), linear-gradient(to bottom, #F2F2F2, #0D0D0D);">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #000000">{{titulo}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-md-4 text-center">
+              <img class="sombra" [src]="imagen" style="box-shadow: 5px 5px 5px #F2F2F2, 10px 10px 10px #ffffff;">
             </div>
+
+            <div class="col ms-auto">
+
+              <div class="accordion" id="accordionExample">
+                <div style="color: #ffffff;" class="accordion-item acordion-item">
+                  <h2 class="accordion-header">
+                    <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion"
+                      type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                      aria-controls="collapseOne">
+                      Descripción
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      {{descripcion}}
+                    </div>
+                  </div>
+                </div>
+                <div style="color: #ffffff;" class="accordion-item acordion-item2">
+                  <h2 class="accordion-header">
+                    <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion2"
+                      type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                      aria-controls="collapseTwo">
+                      Genero
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      {{genero}}
+                    </div>
+                  </div>
+                </div>
+
+                <div style="color: #ffffff;" class="accordion-item acordion-item3">
+                  <h2 class="accordion-header">
+                    <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion3"
+                      type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                      aria-controls="collapseThree">
+                      Fecha de Estreno
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      {{estreno}}
+                    </div>
+                  </div>
+                </div>
+
+                <div style="color: #ffffff;" class="accordion-item acordion-item4">
+                  <h2 class="accordion-header">
+                    <button style="color: #ffffff;" class="accordion-button collapsed fw-bold buttom-acordion4"
+                      type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                      aria-controls="collapseFour">
+                      Paleta de Colores
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Armonía de color:</strong> Complementarios <br>
+                      <input type="color" value="#8C3A1C">
+                      <input type="color" value="#F2B885">
+                      <input type="color" value="#D97E4A">
+                      <input type="color" value="#F2F2F2">
+                      <input type="color" value="#0D0D0D">
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
-  
-        <div class="modal-footer">
-<!--           <button 
+      </div>
+
+      <div class="modal-footer">
+        <!--           <button 
             type="button" 
             class="btn btn-secondary btn-comprar" 
             data-bs-toggle="tooltip" 
@@ -150,11 +290,11 @@
             Comprar Boletos
           </button> -->
 
-          <button type="button" data-bs-dismiss="modal" (click)="comprar()" class="btn btn-primary">Comprar</button>
-  
-          <button [hidden]="showModal" type="button" data-bs-dismiss="modal" (click)="editPeli()" class="btn btn-primary">Editar Información</button>
-        </div>
+        <button type="button" data-bs-dismiss="modal" (click)="comprar()" class="btn btn-primary">Comprar</button>
+
+        <button [hidden]="showModal" type="button" data-bs-dismiss="modal" (click)="editPeli()"
+          class="btn btn-primary">Editar Información</button>
       </div>
     </div>
   </div>
-  
+</div>

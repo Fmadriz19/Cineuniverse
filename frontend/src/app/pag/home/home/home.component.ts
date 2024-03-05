@@ -5,22 +5,36 @@ import Tooltip from 'bootstrap/js/dist/tooltip';
 import { HttpClient } from '@angular/common/http';
 import { UndoIcon } from 'primeng/icons/undo';
 import { ButtonModule } from 'primeng/button';
+import { NgModule } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ImageModule } from 'primeng/image';
+import { DialogModule } from 'primeng/dialog';
+import { CarouselModule } from 'primeng/carousel';
+import { FormsModule } from '@angular/forms';
+
+interface Images {
+  itemImageSrc?: string;
+  thumbnailVideoSrc?: string;
+  alt?: string;
+  title?: string;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [CommonModule, FormsModule, ButtonModule, CarouselModule, ImageModule, DialogModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+
+export class HomeComponent implements OnInit {
   prev: Element | null;
   next: Element | null;
   box: Element | null;
   degrees: number = 0;
 
   showModal = false;
-  
+
   //  Variable id general
   peli_Id: any;
 
@@ -70,10 +84,21 @@ export class HomeComponent {
   peliImagen_14: string | undefined;
   peliImagen_15: string | undefined;
 
+  // Proximos Estrenos
+
+  imagenes: Images[] = [];
+
+  responsiveOptions: any[] | undefined;
+
+  visible: boolean = false;
+
+  imagenPreview!: any;
+  urlNueva!: any;
+
   @ViewChild('box') boxElement: ElementRef;
 
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private dom: DomSanitizer) {
     this.prev = document.querySelector('.prev');
     this.next = document.querySelector('.next');
     this.box = document.querySelector('.box');
@@ -90,12 +115,32 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
+
+    this.responsiveOptions = [
+      {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
+      },
+      {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
+
     this.getUser();
     this.getPeli();
+    this.getEstrenos();
   }
 
   //  Verificacion de si es admin o cliente
-  getUser(){
+  getUser() {
 
     let userData = localStorage.getItem('userData');
 
@@ -114,16 +159,16 @@ export class HomeComponent {
       }
     } else {
       // No se encontró ningún valor en el localStorage
-      this.showModal= true;
+      this.showModal = true;
       console.log('No se encontró ningún dato en el localStorage');
     }
 
   }
 
   //  Extrayendo Datos de todas las peliculas
-  getPeli(){
+  getPeli() {
     this.http.get(`http://127.0.0.1:8000/api/peliculas`).subscribe({
-      next: (res: any) =>{
+      next: (res: any) => {
         console.log(res);
 
         // Guardar informacion en cada poster
@@ -167,35 +212,46 @@ export class HomeComponent {
     });
   }
 
-  nextFun(){
-    if (this.boxElement){
+  getEstrenos() {
+    this.http.get('http://127.0.0.1:8000/api/videos').subscribe({
+      next: (data: any) => {
+        this.imagenes = data;
+      },
+      error: (err: any) => {
+        console.log(err.error.message);
+      }
+    });
+  }
+
+  nextFun() {
+    if (this.boxElement) {
       console.log('se cumple');
       this.degrees -= 24;
       this.boxElement.nativeElement.style.transform = `perspective(1000px) rotateY(${this.degrees}deg)`;
     }
   }
 
-  prevFun(){
-    if (this.boxElement){
+  prevFun() {
+    if (this.boxElement) {
       console.log('se cumple');
       this.degrees += 24;
       this.boxElement.nativeElement.style.transform = `perspective(1000px) rotateY(${this.degrees}deg)`;
     }
   }
 
-  editPeli(){  
+  editPeli() {
     // Redirigir a la nueva ruta
 
     this.router.navigateByUrl(`/edit/pelicula/${this.peli_Id}`);
   }
 
-  comprar(){
+  comprar() {
     this.router.navigateByUrl(`/tickets/${this.peli_Id}`);
   }
- 
+
   //  Verificar que contenido tendra el modal
 
-  poster_15(){
+  poster_15() {
     this.titulo = this.peliPoster_15.nombre;
     this.descripcion = this.peliPoster_15.descripcion;
     this.genero = this.peliPoster_15.genero;
@@ -221,7 +277,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -230,9 +286,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -251,8 +307,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -267,8 +323,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -280,7 +336,7 @@ export class HomeComponent {
     }
   }
 
-  poster_14(){
+  poster_14() {
     this.titulo = this.peliPoster_14.nombre;
     this.descripcion = this.peliPoster_14.descripcion;
     this.genero = this.peliPoster_14.genero;
@@ -306,7 +362,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -315,9 +371,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -336,8 +392,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -352,8 +408,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -365,7 +421,7 @@ export class HomeComponent {
     }
   }
 
-  poster_13(){
+  poster_13() {
     this.titulo = this.peliPoster_13.nombre;
     this.descripcion = this.peliPoster_13.descripcion;
     this.genero = this.peliPoster_13.genero;
@@ -391,7 +447,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -400,9 +456,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -421,8 +477,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -437,8 +493,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -450,7 +506,7 @@ export class HomeComponent {
     }
   }
 
-  poster_12(){
+  poster_12() {
     this.titulo = this.peliPoster_12.nombre;
     this.descripcion = this.peliPoster_12.descripcion;
     this.genero = this.peliPoster_12.genero;
@@ -476,7 +532,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -485,9 +541,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -506,8 +562,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -522,8 +578,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -535,7 +591,7 @@ export class HomeComponent {
     }
   }
 
-  poster_11(){
+  poster_11() {
     this.titulo = this.peliPoster_11.nombre;
     this.descripcion = this.peliPoster_11.descripcion;
     this.genero = this.peliPoster_11.genero;
@@ -561,7 +617,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -570,9 +626,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -591,8 +647,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -607,8 +663,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -620,7 +676,7 @@ export class HomeComponent {
     }
   }
 
-  poster_10(){
+  poster_10() {
     this.titulo = this.peliPoster_10.nombre;
     this.descripcion = this.peliPoster_10.descripcion;
     this.genero = this.peliPoster_10.genero;
@@ -646,7 +702,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -655,9 +711,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -676,8 +732,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -692,8 +748,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -705,7 +761,7 @@ export class HomeComponent {
     }
   }
 
-  poster_9(){
+  poster_9() {
     this.titulo = this.peliPoster_9.nombre;
     this.descripcion = this.peliPoster_9.descripcion;
     this.genero = this.peliPoster_9.genero;
@@ -731,7 +787,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -740,9 +796,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -761,8 +817,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -777,8 +833,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -790,7 +846,7 @@ export class HomeComponent {
     }
   }
 
-  poster_8(){
+  poster_8() {
     this.titulo = this.peliPoster_8.nombre;
     this.descripcion = this.peliPoster_8.descripcion;
     this.genero = this.peliPoster_8.genero;
@@ -816,7 +872,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -825,9 +881,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -846,8 +902,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -862,8 +918,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -875,7 +931,7 @@ export class HomeComponent {
     }
   }
 
-  poster_7(){
+  poster_7() {
     this.titulo = this.peliPoster_7.nombre;
     this.descripcion = this.peliPoster_7.descripcion;
     this.genero = this.peliPoster_7.genero;
@@ -901,7 +957,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -910,9 +966,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -931,8 +987,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -947,8 +1003,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -960,7 +1016,7 @@ export class HomeComponent {
     }
   }
 
-  poster_6(){
+  poster_6() {
     this.titulo = this.peliPoster_6.nombre;
     this.descripcion = this.peliPoster_6.descripcion;
     this.genero = this.peliPoster_6.genero;
@@ -986,7 +1042,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -995,9 +1051,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1016,8 +1072,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1032,8 +1088,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1045,7 +1101,7 @@ export class HomeComponent {
     }
   }
 
-  poster_5(){
+  poster_5() {
     this.titulo = this.peliPoster_5.nombre;
     this.descripcion = this.peliPoster_5.descripcion;
     this.genero = this.peliPoster_5.genero;
@@ -1072,7 +1128,7 @@ export class HomeComponent {
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -1081,9 +1137,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1102,8 +1158,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1118,8 +1174,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1130,8 +1186,8 @@ export class HomeComponent {
       buttom_font4.style.color = letrasAcor;
     }
   }
-  
-  poster_4(){
+
+  poster_4() {
     this.titulo = this.peliPoster_4.nombre;
     this.descripcion = this.peliPoster_4.descripcion;
     this.genero = this.peliPoster_4.genero;
@@ -1154,13 +1210,13 @@ export class HomeComponent {
     const color7 = coloresArray[6];
 
 
-  
+
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
 
 
-    if(modalContent){
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -1169,9 +1225,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1190,8 +1246,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1206,8 +1262,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1219,7 +1275,7 @@ export class HomeComponent {
     }
   }
 
-  poster_3(){
+  poster_3() {
     this.titulo = this.peliPoster_3.nombre;
     this.descripcion = this.peliPoster_3.descripcion;
     this.genero = this.peliPoster_3.genero;
@@ -1246,9 +1302,9 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    
 
-    if(modalContent){
+
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -1257,9 +1313,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1278,8 +1334,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1294,8 +1350,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1307,7 +1363,7 @@ export class HomeComponent {
     }
   }
 
-  poster_2(){
+  poster_2() {
     this.titulo = this.peliPoster_2.nombre;
     this.descripcion = this.peliPoster_2.descripcion;
     this.genero = this.peliPoster_2.genero;
@@ -1334,9 +1390,9 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    
 
-    if(modalContent){
+
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -1345,9 +1401,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1366,8 +1422,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1382,8 +1438,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1395,7 +1451,7 @@ export class HomeComponent {
     }
   }
 
-  poster_1(){
+  poster_1() {
 
     this.titulo = this.peliPoster_1.nombre;
     this.descripcion = this.peliPoster_1.descripcion;
@@ -1423,9 +1479,9 @@ export class HomeComponent {
     //  Define el color de fondo del poster
     const backgroundGradient = `linear-gradient(to bottom, ${color1}, ${color2}, ${color3}), linear-gradient(to bottom, ${color4}, ${color5})`;
     const modalContent = document.querySelector('#Modal .modal-content') as HTMLElement;
-    
 
-    if(modalContent){
+
+    if (modalContent) {
       modalContent.style.background = backgroundGradient;
     }
 
@@ -1434,9 +1490,9 @@ export class HomeComponent {
     //  Define los colores de la sombra
     const box_shadows = `5px 5px 5px ${color4}, 10px 10px 10px ${color1}`;
     const sombra = document.querySelector('#Modal .sombra') as HTMLElement;
-  
 
-    if(sombra){
+
+    if (sombra) {
       sombra.style.boxShadow = box_shadows;
     }
 
@@ -1455,8 +1511,8 @@ export class HomeComponent {
 
     const letras = `${color6}`;
     const titulo = document.querySelector('#Modal .modal-title') as HTMLElement;
-  
-    if(titulo){
+
+    if (titulo) {
       titulo.style.color = letras;
     }
 
@@ -1471,8 +1527,8 @@ export class HomeComponent {
     const buttom_font2 = document.querySelector('#Modal .buttom-acordion2') as HTMLElement;
     const buttom_font3 = document.querySelector('#Modal .buttom-acordion3') as HTMLElement;
     const buttom_font4 = document.querySelector('#Modal .buttom-acordion4') as HTMLElement;
-  
-    if(font){
+
+    if (font) {
       font.style.color = letrasAcor;
       font2.style.color = letrasAcor;
       font3.style.color = letrasAcor;
@@ -1483,4 +1539,79 @@ export class HomeComponent {
       buttom_font4.style.color = letrasAcor;
     }
   }
+
+
+  // Proximos Estrenos
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.dom.bypassSecurityTrustResourceUrl(url);
+  }
+
+
+  showDialog() {
+    this.visible = true;
+    console.log(this.imagenPreview);
+
+    setTimeout(() => {
+      // Coloca aquí la acción que deseas ejecutar después de 2 segundos
+      this.play();
+    }, 5000);
+  }
+
+  play() {
+    this.urlNueva = `${this.imagenPreview.thumbnailVideoSrc}&amp;autoplay=1&start=0`;
+
+    if (this.urlNueva) {
+      console.log(this.urlNueva);
+      this.imagenPreview.thumbnailVideoSrc = this.urlNueva;
+    }
+
+    const iframeElement = document.getElementById('deadpol') as HTMLIFrameElement;
+    const img = document.getElementById('overlay-image') as HTMLElement;
+
+    if (iframeElement) {
+      iframeElement.src = this.urlNueva;
+    }
+
+    if (img) {
+      img.style.opacity = '0';
+
+      setTimeout(() => {
+        img.style.zIndex = '-1';
+      }, 1000);
+    }
+  }
+
+  onDialogClose() {
+    this.urlNueva = `${this.imagenPreview.thumbnailVideoSrc}&amp;autoplay=0`
+
+    if (this.urlNueva) {
+      console.log(this.urlNueva);
+      this.imagenPreview.thumbnailVideoSrc = this.urlNueva;
+    }
+
+    const iframeElement = document.getElementById('deadpol') as HTMLIFrameElement;
+    const img = document.getElementById('overlay-image') as HTMLElement;
+
+    if (iframeElement) {
+      iframeElement.src = this.urlNueva;
+    }
+
+    if (img) {
+      img.style.opacity = '0';
+
+      setTimeout(() => {
+        img.style.zIndex = '1';
+      }, 1000);
+    }
+
+  }
+
+  previsualizar(product: Images) {
+    this.imagenPreview = product;
+
+    this.showDialog();
+
+
+  }
+
 }

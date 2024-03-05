@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comprado;
-
+use App\Mail\EnvioCorreosMailable;
+use Illuminate\Support\Facades\Mail;
 class CompradoController extends Controller
 {
     
@@ -82,4 +83,10 @@ class CompradoController extends Controller
         $peliculas = Pelicula::select('peliculas.*')->get();
         return response()->json($peliculas);
     } */
+
+    public function send(Request $request)
+    {
+        Mail::to('victor@codersfree.com')->send(new EnvioCorreosMailable($request -> all()));
+        return "Mensaje enviado";
+    }
 }
